@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://r0phmqp0a05t"]
+
+[ext_resource type="Texture2D" uid="uid://khvqavyo6cl7" path="res://assets/sprites/roadblock.png" id="1_g3g5j"]
+[ext_resource type="Script" uid="uid://bujuewijuoag1" path="res://road_block.gd" id="1_saub2"]
+
+[node name="RoadBlock" type="Area2D" unique_id=461050500]
+script = ExtResource("1_saub2")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1755979165]
+texture = ExtResource("1_g3g5j")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=961944297]
+polygon = PackedVector2Array(-49, -33, -96, 31, 95, 31, 48, -33)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1459444716]
+position = Vector2(-86, 22)
+rect = Rect2(-10, -54, 192, 64)
+metadata/_edit_group_ = true
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

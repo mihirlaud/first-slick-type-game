@@ -3,12 +3,16 @@
 [ext_resource type="Script" uid="uid://ctne8ko73t6an" path="res://game.gd" id="1_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://o22dto312yjm" path="res://road_line.tscn" id="2_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://bsw412i352les" path="res://player.tscn" id="2_feb5d"]
-[ext_resource type="PackedScene" uid="uid://33236yu56xgk" path="res://road_barrier.tscn" id="3_fc0e3"]
+[ext_resource type="PackedScene" uid="uid://by1uu6r5wl8ep" path="res://cone.tscn" id="4_7jktm"]
+[ext_resource type="PackedScene" uid="uid://jidc3lpv7kog" path="res://oil_spill.tscn" id="4_eow3j"]
+[ext_resource type="PackedScene" uid="uid://r0phmqp0a05t" path="res://road_block.tscn" id="4_ryrav"]
 
 [node name="Game" type="Node2D" unique_id=561199391]
 script = ExtResource("1_e2o6t")
 road_line_scene = ExtResource("2_fc0e3")
-road_barrier_scene = ExtResource("3_fc0e3")
+cone_scene = ExtResource("4_7jktm")
+oil_scene = ExtResource("4_eow3j")
+roadblock_scene = ExtResource("4_ryrav")
 
 [node name="Player" parent="." unique_id=1916046122 instance=ExtResource("2_feb5d")]
 
@@ -16,9 +20,8 @@ road_barrier_scene = ExtResource("3_fc0e3")
 wait_time = 0.2
 autostart = true
 
-[node name="RoadBarrierTimer" type="Timer" parent="." unique_id=1908635437]
-wait_time = 0.1
+[node name="ObstacleTimer" type="Timer" parent="." unique_id=975008040]
 autostart = true
 
 [connection signal="timeout" from="RoadLineTimer" to="." method="_on_road_line_timer_timeout"]
-[connection signal="timeout" from="RoadBarrierTimer" to="." method="_on_road_barrier_timer_timeout"]
+[connection signal="timeout" from="ObstacleTimer" to="." method="_on_obstacle_timer_timeout"]
