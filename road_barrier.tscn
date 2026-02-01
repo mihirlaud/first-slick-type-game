@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://33236yu56xgk"]
+
+[ext_resource type="Script" uid="uid://b1bp3p7of07cs" path="res://road_barrier.gd" id="1_c6p3s"]
+[ext_resource type="Texture2D" uid="uid://cuyx2pnn10ko8" path="res://assets/sprites/road_barrier.png" id="1_cop0r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c6p3s"]
+size = Vector2(32, 128)
+
+[node name="RoadBarrier" type="Area2D" unique_id=996285932]
+script = ExtResource("1_c6p3s")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1751890031]
+texture = ExtResource("1_cop0r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=451034798]
+shape = SubResource("RectangleShape2D_c6p3s")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=643830428]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

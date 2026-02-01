@@ -1,44 +1,40 @@
 extends Area2D
 
 @export var max_speed = 800 # How fast the player will move (pixels/sec).
-@export var max_rot_speed = 0.025
+@export var player_y = 0
 var screen_size # Size of the game window.
 var velocity
-var rotational_velocity
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	velocity = 0
-	rotational_velocity = 0
+	velocity = Vector2.ZERO
 	screen_size = get_viewport_rect().size
+	position = Vector2(screen_size.x / 2, player_y)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_pressed("accel"):
-		velocity += 0.01
-	else:
-		velocity -= 0.005
-	
-	if Input.is_action_pressed("brake"):
-		velocity -= 0.01
-	
-	velocity = max(0, min(1, velocity))
-	
 	if Input.is_action_pressed("turn_left"):
-		rotational_velocity -= 0.01
+		velocity.x -= 0.01
 	elif Input.is_action_pressed("turn_right"):
-		rotational_velocity += 0.01
+		velocity.x += 0.01
 	else:
-		if rotational_velocity > 0:
-			rotational_velocity -= 0.008
-		elif rotational_velocity < 0:
-			rotational_velocity += 0.008
+		if velocity.x > 0:
+			velocity.x -= 0.005
+		elif velocity.x < 0:
+			velocity.x += 0.005
 	
-	rotational_velocity = max(-1, min(1, rotational_velocity))
+	velocity = velocity.clamp(Vector2(-1, 0), Vector2(1, 0))
 	
-	rotation += rotational_velocity * max_rot_speed * velocity
+	var dv = velocity * delta * max_speed
 	
-	var dv = Vector2(velocity * delta * max_speed, 0)
-	
-	position += dv.rotated(rotation)
+	position += dv
 	position = position.clamp(Vector2.ZERO, screen_size)
+	
+	var dx = position.x - screen_size.x / 2
+	var dy = player_y
+	var theta = atan2(dy, dx) - PI / 2
+	rotation = theta
+
+func set_y(new_y) -> void:
+	player_y = new_y
+	position.y = player_y

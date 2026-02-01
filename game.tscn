@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://d4m2vfmt0qmk6"]
+
+[ext_resource type="Script" uid="uid://ctne8ko73t6an" path="res://game.gd" id="1_e2o6t"]
+[ext_resource type="PackedScene" uid="uid://o22dto312yjm" path="res://road_line.tscn" id="2_fc0e3"]
+[ext_resource type="PackedScene" uid="uid://bsw412i352les" path="res://player.tscn" id="2_feb5d"]
+[ext_resource type="PackedScene" uid="uid://33236yu56xgk" path="res://road_barrier.tscn" id="3_fc0e3"]
+
+[node name="Game" type="Node2D" unique_id=561199391]
+script = ExtResource("1_e2o6t")
+road_line_scene = ExtResource("2_fc0e3")
+road_barrier_scene = ExtResource("3_fc0e3")
+
+[node name="Player" parent="." unique_id=1916046122 instance=ExtResource("2_feb5d")]
+
+[node name="RoadLineTimer" type="Timer" parent="." unique_id=753022573]
+wait_time = 0.2
+autostart = true
+
+[node name="RoadBarrierTimer" type="Timer" parent="." unique_id=1908635437]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="RoadLineTimer" to="." method="_on_road_line_timer_timeout"]
+[connection signal="timeout" from="RoadBarrierTimer" to="." method="_on_road_barrier_timer_timeout"]
