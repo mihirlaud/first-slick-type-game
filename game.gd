@@ -1,17 +1,28 @@
 extends Node2D
 
+signal score_changed(new_value)
+signal mult_changed(new_value)
+signal speed_changed(new_value)
+signal game_over
+signal game_start
+
 var screen_size # Size of the game window.
-var rng
 var road_width
-var t
 @export var road_line_scene: PackedScene
 @export var cone_scene: PackedScene
 @export var oil_scene: PackedScene
 @export var roadblock_scene: PackedScene
 @export var frequency = 0.75
+var score
+var mult
+var global_speed
+var paused
+var game_done
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	paused = false
+	game_done = false
 	randomize()
 	
 	add_to_group("game")
@@ -21,11 +32,9 @@ func _ready() -> void:
 	$Player.set_y(screen_size.y * 0.8)
 	$Player.set_x(screen_size.x / 3 + road_width * 0.5)
 	
-	rng = FastNoiseLite.new()
-	rng.noise_type = FastNoiseLite.TYPE_PERLIN
-	rng.frequency = frequency
-	rng.seed = randi()
-	t = 0
+	score = 0
+	mult = 1.0
+	global_speed = 500
 	
 	var road_line = road_line_scene.instantiate()
 	var gap = road_line.speed * $RoadLineTimer.wait_time
@@ -35,15 +44,22 @@ func _ready() -> void:
 			
 			road_line.position.y = i * gap
 			road_line.position.x = screen_size.x / 3 + (j + 1) * road_width / 5
+			road_line.add_to_group("moving")
 	
 			add_child(road_line)
+	
+	game_start.emit()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	t += delta
-	
 	if Input.is_action_just_pressed("restart"):
 		restart()
+	
+	if Input.is_action_just_pressed("pause") and not game_done:
+		if paused:
+			unpause()
+		else:
+			pause()
 
 func _on_road_line_timer_timeout() -> void:
 	for j in 4:	
@@ -61,6 +77,7 @@ func _on_obstacle_timer_timeout() -> void:
 		var cone = cone_scene.instantiate()
 		var lane = randi() % 5
 	
+		cone.speed = global_speed
 		cone.position.y = 0
 		cone.position.x = screen_size.x / 3 + road_width * 0.1 + road_width * 0.2 * lane
 		cone.add_to_group("moving")
@@ -71,6 +88,7 @@ func _on_obstacle_timer_timeout() -> void:
 		var road_block = roadblock_scene.instantiate()
 		var lane = randi() % 3 + 1
 		
+		road_block.speed = global_speed
 		road_block.position.y = 0
 		road_block.position.x = screen_size.x / 3 + road_width * 0.1 + road_width * 0.2 * lane
 		road_block.add_to_group("moving")
@@ -80,7 +98,7 @@ func _on_obstacle_timer_timeout() -> void:
 	else:
 		var oil = oil_scene.instantiate()
 		var lane = randi() % 5
-	
+
 		oil.position.y = 0
 		oil.position.x = screen_size.x / 3 + road_width * 0.1 + road_width * 0.2 * lane
 		oil.add_to_group("moving")
@@ -90,7 +108,41 @@ func _on_obstacle_timer_timeout() -> void:
 func stop_moving() -> void:
 	$RoadLineTimer.stop()
 	$ObstacleTimer.stop()
+	$ScoreTimer.stop()
+	$MultTimer.stop()
+	$SpeedTimer.stop()
 	$Player.pause()
+	
+	game_done = true
+	game_over.emit()
+
+func pause() -> void:
+	paused = true
+	$RoadLineTimer.stop()
+	$ObstacleTimer.stop()
+	$ScoreTimer.stop()
+	$MultTimer.stop()
+	$SpeedTimer.stop()
+	$Player.pause()
+	
+	var movers = get_tree().get_nodes_in_group("moving")
+	for mover in movers:
+		if not mover.is_in_group("game"):
+			mover.stop_moving()
+
+func unpause() -> void:
+	paused = false
+	$RoadLineTimer.start()
+	$ObstacleTimer.start()
+	$ScoreTimer.start()
+	$MultTimer.start()
+	$SpeedTimer.start()
+	$Player.unpause()
+	
+	var movers = get_tree().get_nodes_in_group("moving")
+	for mover in movers:
+		if not mover.is_in_group("game"):
+			mover.start_moving()
 
 func restart() -> void:
 	var movers = get_tree().get_nodes_in_group("moving")
@@ -98,7 +150,29 @@ func restart() -> void:
 		mover.queue_free()
 		
 	$Player.set_x($Player.start_x)
-	$RoadLineTimer.start()
-	$ObstacleTimer.start()
-	$Player.unpause()
+	$Player.speed_mult = 0.0
+	unpause()
+	$Sidebar.reset()
 	_ready()
+
+func increase_score(increment) -> void:
+	score += increment * mult
+	score_changed.emit(score)
+
+func change_mult(new_value) -> void:
+	mult = new_value
+	mult_changed.emit(new_value)
+
+func increase_speed(increment) -> void:
+	global_speed += increment
+	speed_changed.emit(global_speed)
+
+func _on_score_timer_timeout() -> void:
+	increase_score(10)
+
+func _on_mult_timer_timeout() -> void:
+	change_mult(1.0 + round(10 * $Player.speed_mult) / 10.0)
+
+func _on_speed_timer_timeout() -> void:
+	if global_speed < 2000:
+		increase_speed(100)

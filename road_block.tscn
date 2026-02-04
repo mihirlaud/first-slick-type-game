@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bujuewijuoag1" path="res://road_block.gd" id="1_saub2"]
 
 [node name="RoadBlock" type="Area2D" unique_id=461050500]
+rotation = -1.5700101
 script = ExtResource("1_saub2")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1755979165]

@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var speed = 1000
+@export var speed = 500
 var moving = true
 
 # Called when the node enters the scene tree for the first time.
@@ -14,6 +14,9 @@ func _process(delta: float) -> void:
 
 func stop_moving() -> void:
 	moving = false
+	
+func start_moving() -> void:
+	moving = true
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()

@@ -7,6 +7,7 @@ var screen_size # Size of the game window.
 var velocity
 var control_lost = false
 var paused = false
+var speed_mult = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -44,6 +45,17 @@ func _process(delta: float) -> void:
 		rotation = theta
 	else:
 		rotation += 0.05
+	
+	var speed_factor = abs(velocity.x) * 4.0
+	if speed_factor > 0.1:
+		speed_mult += 0.001 * speed_factor
+	else:
+		speed_mult -= 0.002
+	
+	speed_mult = max(0.0, min(4.0, speed_mult))
+	
+	if control_lost:
+		speed_mult = 0.0
 
 func set_y(new_y) -> void:
 	player_y = new_y
