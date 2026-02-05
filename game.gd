@@ -21,9 +21,22 @@ var mult
 var global_speed
 var paused
 var game_done
+var start = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$Player.visible = false
+	$Sidebar.visible = false
+
+func start_game() -> void:
+	$RoadLineTimer.start()
+	$ObstacleTimer.start()
+	$ScoreTimer.start()
+	$MultTimer.start()
+	$SpeedTimer.start()
+	$Player.visible = true
+	$Sidebar.visible = true
+	
 	paused = false
 	game_done = false
 	randomize()
@@ -184,7 +197,7 @@ func restart() -> void:
 	$Player.speed_mult = 0.0
 	unpause()
 	$Sidebar.reset()
-	_ready()
+	start_game()
 
 func increase_score(increment) -> void:
 	score += increment * mult
@@ -207,3 +220,6 @@ func _on_mult_timer_timeout() -> void:
 func _on_speed_timer_timeout() -> void:
 	if global_speed < 2000:
 		increase_speed(100)
+
+func _on_start_screen_start_game() -> void:
+	start_game()
