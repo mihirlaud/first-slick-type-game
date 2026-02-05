@@ -5,6 +5,7 @@ signal mult_changed(new_value)
 signal speed_changed(new_value)
 signal game_over
 signal game_start
+signal pause_signal(is_paused)
 
 var screen_size # Size of the game window.
 var road_width
@@ -155,6 +156,8 @@ func pause() -> void:
 	for mover in movers:
 		if not mover.is_in_group("game"):
 			mover.stop_moving()
+	
+	pause_signal.emit(true)
 
 func unpause() -> void:
 	paused = false
@@ -169,6 +172,8 @@ func unpause() -> void:
 	for mover in movers:
 		if not mover.is_in_group("game"):
 			mover.start_moving()
+			
+	pause_signal.emit(false)
 
 func restart() -> void:
 	var movers = get_tree().get_nodes_in_group("moving")

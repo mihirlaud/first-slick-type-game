@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://dv8v1ys2xiw2i"]
+
+[ext_resource type="Script" uid="uid://dcv6ade3nq45d" path="res://pause_screen.gd" id="1_gkx8r"]
+
+[node name="PauseScreen" type="Control" unique_id=1854557042]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gkx8r")
+
+[node name="Label" type="Label" parent="." unique_id=1056855736]
+top_level = true
+layout_mode = 0
+offset_left = 498.00003
+offset_top = 274.0
+offset_right = 561.06104
+offset_bottom = 297.0
+scale = Vector2(2.9019523, 3.791525)
+text = "PAUSED"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=866957243]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(28.8, 16.119999)
+color = Color(0, 0, 0, 0.65882355)
