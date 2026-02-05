@@ -12,6 +12,8 @@ var road_width
 @export var cone_scene: PackedScene
 @export var oil_scene: PackedScene
 @export var roadblock_scene: PackedScene
+@export var swerving_car_scene: PackedScene
+@export var boost_scene: PackedScene
 @export var frequency = 0.75
 var score
 var mult
@@ -73,7 +75,7 @@ func _on_road_line_timer_timeout() -> void:
 		
 func _on_obstacle_timer_timeout() -> void:
 	var selection = randi() % 100
-	if selection < 60:
+	if selection < 40:
 		var cone = cone_scene.instantiate()
 		var lane = randi() % 5
 	
@@ -84,9 +86,9 @@ func _on_obstacle_timer_timeout() -> void:
 		cone.add_to_group("obstacle")
 		
 		add_child(cone)
-	elif selection < 80:
+	elif selection < 60:
 		var road_block = roadblock_scene.instantiate()
-		var lane = randi() % 3 + 1
+		var lane = randi() % 5
 		
 		road_block.speed = global_speed
 		road_block.position.y = 0
@@ -95,6 +97,30 @@ func _on_obstacle_timer_timeout() -> void:
 		road_block.add_to_group("obstacle")
 		
 		add_child(road_block)
+	elif selection < 70:
+		var swerving_car = swerving_car_scene.instantiate()
+		var lane = randi() % 4
+		
+		swerving_car.speed = global_speed
+		swerving_car.position.y = 0
+		swerving_car.position.x = screen_size.x / 3 + road_width * 0.1 + road_width * 0.2 * lane
+		swerving_car.start_x = swerving_car.position.x
+		swerving_car.lane_width = road_width * 0.2
+		swerving_car.add_to_group("moving")
+		swerving_car.add_to_group("obstacle")
+		
+		add_child(swerving_car)
+	elif selection < 80:
+		var boost = boost_scene.instantiate()
+		var lane = randi() % 4
+		
+		boost.speed = global_speed
+		boost.position.y = 0
+		boost.position.x = screen_size.x / 3 + road_width * 0.1 + road_width * 0.2 * lane
+		boost.add_to_group("moving")
+		boost.add_to_group("boost")
+		
+		add_child(boost)
 	else:
 		var oil = oil_scene.instantiate()
 		var lane = randi() % 5
