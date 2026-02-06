@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://ci5ep834dncft"
-path="res://.godot/imported/SlickDriverTheme.wav-059e6df0a4126bcb93a19a15e8149a63.sample"
+path="res://.godot/imported/SlickDriverTheme.wav-c42d8d599fa37350cc66435854a0b3d4.sample"
 
 [deps]
 
-source_file="res://sound/SlickDriverTheme.wav"
-dest_files=["res://.godot/imported/SlickDriverTheme.wav-059e6df0a4126bcb93a19a15e8149a63.sample"]
+source_file="res://assets/audio/SlickDriverTheme.wav"
+dest_files=["res://.godot/imported/SlickDriverTheme.wav-c42d8d599fa37350cc66435854a0b3d4.sample"]
 
 [params]
 

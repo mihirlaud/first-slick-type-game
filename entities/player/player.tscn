@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bsw412i352les"]
 
-[ext_resource type="Script" uid="uid://cj0ao7u0b0kh3" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="Script" uid="uid://cj0ao7u0b0kh3" path="res://entities/player/player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://duw4y6tgbjnj4" path="res://assets/sprites/Car.webp" id="2_onrkg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]

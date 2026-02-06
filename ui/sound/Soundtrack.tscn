@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b83vn2ffp4njc"]
 
-[ext_resource type="AudioStream" uid="uid://ci5ep834dncft" path="res://sound/SlickDriverTheme.wav" id="1_g4xh8"]
+[ext_resource type="AudioStream" uid="uid://ci5ep834dncft" path="res://assets/audio/SlickDriverTheme.wav" id="1_g4xh8"]
 
 [node name="Soundtrack" type="Node2D" unique_id=129093093]
 process_mode = 3

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://o22dto312yjm"]
 
 [ext_resource type="Texture2D" uid="uid://cwjjwmsnxqjhf" path="res://assets/sprites/road_line.png" id="1_acn2m"]
-[ext_resource type="Script" uid="uid://oimupowfh6a" path="res://road_line.gd" id="1_qdml7"]
+[ext_resource type="Script" uid="uid://oimupowfh6a" path="res://entities/road-line/road_line.gd" id="1_qdml7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qdml7"]
 size = Vector2(16, 64)

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://r0phmqp0a05t"]
 
 [ext_resource type="Texture2D" uid="uid://khvqavyo6cl7" path="res://assets/sprites/roadblock.png" id="1_g3g5j"]
-[ext_resource type="Script" uid="uid://bujuewijuoag1" path="res://road_block.gd" id="1_saub2"]
+[ext_resource type="Script" uid="uid://bujuewijuoag1" path="res://entities/truck/truck.gd" id="1_saub2"]
 
 [node name="RoadBlock" type="Area2D" unique_id=461050500]
 rotation = -1.5700101

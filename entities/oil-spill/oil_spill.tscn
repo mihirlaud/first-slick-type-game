@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://jidc3lpv7kog"]
 
-[ext_resource type="Script" uid="uid://oimupowfh6a" path="res://road_line.gd" id="1_gwxbg"]
+[ext_resource type="Script" uid="uid://oimupowfh6a" path="res://entities/road-line/road_line.gd" id="1_gwxbg"]
 [ext_resource type="Texture2D" uid="uid://b6uxnfi0l8p8v" path="res://assets/sprites/oil_spill.png" id="2_c73b7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qdml7"]
