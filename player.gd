@@ -95,3 +95,7 @@ func unpause() -> void:
 
 func _on_boost_timer_timeout() -> void:
 	max_speed = 1000
+
+func stop_boost() -> void:
+	max_speed = 1000
+	$BoostTimer.stop()

@@ -152,6 +152,7 @@ func stop_moving() -> void:
 	$MultTimer.stop()
 	$SpeedTimer.stop()
 	$Player.pause()
+	$Player.stop_boost()
 	
 	game_done = true
 	game_over.emit()
