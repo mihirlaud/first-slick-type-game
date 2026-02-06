@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://76hwlk3uufyj"]
 
 [ext_resource type="Script" uid="uid://dauhrm7055f07" path="res://ui/sidebar/sidebar.gd" id="1_1nfj0"]
+[ext_resource type="FontFile" uid="uid://3uh7uwwtg1yw" path="res://assets/fonts/PressStart2P-Regular.ttf" id="2_jf2tq"]
 
 [node name="Sidebar" type="Control" unique_id=261893617]
 layout_mode = 3
@@ -14,23 +15,28 @@ script = ExtResource("1_1nfj0")
 metadata/_edit_group_ = true
 
 [node name="ScoreLabel" type="Label" parent="." unique_id=1198462023]
+top_level = true
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("2_jf2tq")
+theme_override_font_sizes/font_size = 40
 text = "SCORE"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="MultLabel" type="Label" parent="." unique_id=1530400292]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=938389482]
 layout_mode = 0
-offset_left = 1.0
-offset_top = 27.0
-offset_right = 55.0
-offset_bottom = 60.0
-text = "MULT"
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 0.7372549)
 
-[node name="SpeedLabel" type="Label" parent="." unique_id=1812347794]
+[node name="HiScoreLabel" type="Label" parent="." unique_id=1099151927]
 layout_mode = 0
-offset_left = 1.0
-offset_top = 56.0
-offset_right = 41.0
-offset_bottom = 79.0
-text = "SPEED"
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0.44705883, 1, 0.47843137, 1)
+theme_override_fonts/font = ExtResource("2_jf2tq")
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+vertical_alignment = 1
