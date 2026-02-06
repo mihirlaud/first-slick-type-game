@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cl8wlxxq5mffe" path="res://game_over_screen.tscn" id="8_j5wjh"]
 [ext_resource type="PackedScene" uid="uid://dv8v1ys2xiw2i" path="res://pause_screen.tscn" id="11_mfdv2"]
 [ext_resource type="PackedScene" uid="uid://bwemm7mv4jsxi" path="res://start_screen.tscn" id="12_iotsf"]
+[ext_resource type="PackedScene" uid="uid://b83vn2ffp4njc" path="res://sound/Soundtrack.tscn" id="9_vef74"]
 
 [node name="Game" type="Node2D" unique_id=561199391]
 script = ExtResource("1_e2o6t")
@@ -52,6 +53,9 @@ top_level = true
 
 [node name="StartScreen" parent="." unique_id=1432398296 instance=ExtResource("12_iotsf")]
 top_level = true
+
+[node name="Soundtrack" parent="." unique_id=129093093 instance=ExtResource("9_vef74")]
+position = Vector2(566.685, 317.035)
 
 [connection signal="game_over" from="." to="GameOverScreen" method="_on_game_game_over"]
 [connection signal="game_start" from="." to="GameOverScreen" method="_on_game_game_start"]

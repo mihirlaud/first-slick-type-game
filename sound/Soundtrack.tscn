@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b83vn2ffp4njc"]
+
+[ext_resource type="AudioStream" uid="uid://ci5ep834dncft" path="res://sound/SlickDriverTheme.wav" id="1_g4xh8"]
+
+[node name="Soundtrack" type="Node2D" unique_id=129093093]
+process_mode = 3
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=41602936]
+stream = ExtResource("1_g4xh8")
+autoplay = true
+bus = &"Music"
