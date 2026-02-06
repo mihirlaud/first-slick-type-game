@@ -1,20 +1,22 @@
 [gd_scene format=3 uid="uid://bsw412i352les"]
 
-[ext_resource type="Texture2D" uid="uid://cb2w5dlo0jkol" path="res://assets/sprites/car.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://cj0ao7u0b0kh3" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://duw4y6tgbjnj4" path="res://assets/sprites/Car.webp" id="2_onrkg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
-size = Vector2(64, 64)
+size = Vector2(49, 99)
 
 [node name="Player" type="Area2D" unique_id=1916046122]
 top_level = true
 script = ExtResource("1_onrkg")
-metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1123095429]
-texture = ExtResource("1_4flbx")
+position = Vector2(-8, 0)
+scale = Vector2(0.0978836, 0.0978836)
+texture = ExtResource("2_onrkg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1819317590]
+position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_onrkg")
 
 [node name="ControlLossTimer" type="Timer" parent="." unique_id=2124112890]
