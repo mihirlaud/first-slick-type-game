@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dpju6kn1u8iki"]
+
+[ext_resource type="Script" uid="uid://dk12largakqbe" path="res://sound/car_sfx.gd" id="1_t85q0"]
+[ext_resource type="AudioStream" uid="uid://cx702vejhs8kd" path="res://sound/car-driving.wav" id="1_tq2dx"]
+[ext_resource type="AudioStream" uid="uid://b0fsv7veyeh3x" path="res://sound/car-crash.wav" id="3_0350s"]
+
+[node name="CarSfx" type="Node2D" unique_id=1964746053 node_paths=PackedStringArray("driving_sfx", "crash_sfx")]
+process_mode = 1
+script = ExtResource("1_t85q0")
+driving_sfx = NodePath("DrivingSfx")
+crash_sfx = NodePath("CrashSfx")
+
+[node name="DrivingSfx" type="AudioStreamPlayer2D" parent="." unique_id=2010283354]
+process_mode = 1
+stream = ExtResource("1_tq2dx")
+bus = &"SFX"
+
+[node name="CrashSfx" type="AudioStreamPlayer2D" parent="." unique_id=1549982450]
+stream = ExtResource("3_0350s")
+bus = &"SFX"

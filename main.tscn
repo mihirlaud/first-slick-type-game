@@ -12,7 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://cl8wlxxq5mffe" path="res://ui/game-over/game_over_screen.tscn" id="10_ryguw"]
 [ext_resource type="PackedScene" uid="uid://dv8v1ys2xiw2i" path="res://ui/pause-screen/pause_screen.tscn" id="11_d13ii"]
 [ext_resource type="PackedScene" uid="uid://bwemm7mv4jsxi" path="res://ui/start-screen/start_screen.tscn" id="12_1u8w0"]
-[ext_resource type="PackedScene" uid="uid://b83vn2ffp4njc" path="res://ui/sound/Soundtrack.tscn" id="13_0odxb"]
+[ext_resource type="PackedScene" uid="uid://b83vn2ffp4njc" path="res://sound/Soundtrack.tscn" id="13_0odxb"]
+[ext_resource type="PackedScene" uid="uid://dpju6kn1u8iki" path="res://sound/CarSFX.tscn" id="14_2cqfq"]
 [ext_resource type="PackedScene" uid="uid://ccvm6th7c52ad" path="res://ui/help-screen/help_screen.tscn" id="14_w48qg"]
 [ext_resource type="PackedScene" uid="uid://ddntmpnfk20j1" path="res://ui/credits-screen/credits_screen.tscn" id="15_vivmo"]
 
@@ -63,12 +64,22 @@ position = Vector2(566.685, 317.035)
 
 [node name="CreditsScreen" parent="." unique_id=926326471 instance=ExtResource("15_vivmo")]
 
+[node name="Sound" type="Node2D" parent="." unique_id=896557729]
+
+[node name="Soundtrack" parent="Sound" unique_id=197845734 instance=ExtResource("13_0odxb")]
+position = Vector2(566.685, 317.035)
+
+[node name="CarSfx" parent="Sound" unique_id=1964746053 instance=ExtResource("14_2cqfq")]
+position = Vector2(564.03, 316.31)
+
 [connection signal="credits_opened" from="." to="CreditsScreen" method="_on_main_credits_opened"]
 [connection signal="game_over" from="." to="GameOverScreen" method="_on_game_game_over"]
+[connection signal="game_over" from="." to="Sound/CarSfx" method="_on_main_game_over"]
 [connection signal="game_start" from="." to="GameOverScreen" method="_on_game_game_start"]
 [connection signal="help_opened" from="." to="HelpScreen" method="_on_game_help_opened"]
 [connection signal="mult_changed" from="." to="Sidebar" method="_on_game_mult_changed"]
 [connection signal="pause_signal" from="." to="PauseScreen" method="_on_game_pause_signal"]
+[connection signal="pause_signal" from="." to="Sound/CarSfx" method="_on_main_pause_signal"]
 [connection signal="score_changed" from="." to="Sidebar" method="_on_game_score_changed"]
 [connection signal="speed_changed" from="." to="Sidebar" method="_on_game_speed_changed"]
 [connection signal="timeout" from="RoadLineTimer" to="." method="_on_road_line_timer_timeout"]
@@ -80,4 +91,5 @@ position = Vector2(566.685, 317.035)
 [connection signal="timeout" from="MultTimer" to="." method="_on_mult_timer_timeout"]
 [connection signal="timeout" from="SpeedTimer" to="." method="_on_speed_timer_timeout"]
 [connection signal="start_game" from="StartScreen" to="." method="_on_start_screen_start_game"]
+[connection signal="start_game" from="StartScreen" to="Sound/CarSfx" method="_on_start_screen_start_game"]
 [connection signal="credits_closed" from="CreditsScreen" to="." method="_on_credits_screen_credits_closed"]

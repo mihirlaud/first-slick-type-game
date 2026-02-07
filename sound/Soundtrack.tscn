@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b83vn2ffp4njc"]
 
 [ext_resource type="AudioStream" uid="uid://ci5ep834dncft" path="res://assets/audio/SlickDriverTheme.wav" id="1_g4xh8"]
-[ext_resource type="Script" uid="uid://h41bjcd761x3" path="res://ui/sound/soundtrack.gd" id="1_semkq"]
+[ext_resource type="Script" uid="uid://h41bjcd761x3" path="res://sound/soundtrack.gd" id="1_semkq"]
 
 [node name="Soundtrack" type="Node2D" unique_id=129093093]
 process_mode = 3
@@ -9,6 +9,5 @@ script = ExtResource("1_semkq")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=41602936]
 stream = ExtResource("1_g4xh8")
-volume_db = 15.0
 autoplay = true
 bus = &"Music"
