@@ -6,6 +6,7 @@ signal speed_changed(new_value)
 signal game_over
 signal game_start
 signal pause_signal(is_paused)
+signal stop_sound(stop)
 signal help_opened(is_opened)
 signal credits_opened(is_opened)
 
@@ -189,6 +190,8 @@ func pause_core() -> void:
 	for mover in movers:
 		if not mover.is_in_group("game"):
 			mover.stop_moving()
+	
+	stop_sound.emit(true)
 
 func unpause_core() -> void:
 	$RoadLineTimer.start()
@@ -202,6 +205,8 @@ func unpause_core() -> void:
 	for mover in movers:
 		if not mover.is_in_group("game"):
 			mover.start_moving()
+	
+	stop_sound.emit(false)
 
 func pause() -> void:
 	paused = true
@@ -302,3 +307,9 @@ func _on_credits_screen_credits_closed() -> void:
 		close_credits()
 	else:
 		open_credits()
+
+func _on_help_screen_help_closed() -> void:
+	if help_open:
+		close_help()
+	else:
+		open_help()

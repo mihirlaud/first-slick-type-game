@@ -82,6 +82,7 @@ position = Vector2(564.03, 316.31)
 [connection signal="pause_signal" from="." to="Sound/CarSfx" method="_on_main_pause_signal"]
 [connection signal="score_changed" from="." to="Sidebar" method="_on_game_score_changed"]
 [connection signal="speed_changed" from="." to="Sidebar" method="_on_game_speed_changed"]
+[connection signal="stop_sound" from="." to="Sound/CarSfx" method="_on_main_stop_sound"]
 [connection signal="timeout" from="RoadLineTimer" to="." method="_on_road_line_timer_timeout"]
 [connection signal="timeout" from="ObstacleTimer" to="." method="_on_obstacle_timer_timeout"]
 [connection signal="credits_clicked" from="Sidebar" to="." method="_on_sidebar_credits_clicked"]
@@ -92,4 +93,5 @@ position = Vector2(564.03, 316.31)
 [connection signal="timeout" from="SpeedTimer" to="." method="_on_speed_timer_timeout"]
 [connection signal="start_game" from="StartScreen" to="." method="_on_start_screen_start_game"]
 [connection signal="start_game" from="StartScreen" to="Sound/CarSfx" method="_on_start_screen_start_game"]
+[connection signal="help_closed" from="HelpScreen" to="." method="_on_help_screen_help_closed"]
 [connection signal="credits_closed" from="CreditsScreen" to="." method="_on_credits_screen_credits_closed"]

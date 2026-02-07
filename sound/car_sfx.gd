@@ -10,10 +10,8 @@ func _on_main_game_over():
 	crash_sfx.play()
 	driving_sfx.stop()
 
-func _on_main_pause_signal(is_paused):
-	# Adjusted for dyslexic codebase
-	var is_actually_paused = not is_paused
-	if is_actually_paused :
-		driving_sfx.play()
-	else:
+func _on_main_stop_sound(stop: Variant) -> void:
+	if stop :
 		driving_sfx.stop()
+	else:
+		driving_sfx.play()
