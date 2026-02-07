@@ -80,8 +80,10 @@ func _process(delta: float) -> void:
 		restart()
 	
 	if not start and Input.is_action_just_pressed("help"):
-		help_open = not help_open
-		help_opened.emit(help_open)
+		if help_open:
+			close_help()
+		else:
+			open_help()
 	
 	if not start and Input.is_action_just_pressed("pause") and not game_done:
 		if paused:
@@ -93,7 +95,7 @@ func _on_road_line_timer_timeout() -> void:
 	for j in 4:	
 		var road_line = road_line_scene.instantiate()
 	
-		road_line.position.y = 0
+		road_line.position.y = -30
 		road_line.position.x = screen_size.x / 3 + (j + 1) * road_width / 5
 		road_line.add_to_group("moving")
 		road_line.z_index = -1
@@ -107,7 +109,7 @@ func _on_obstacle_timer_timeout() -> void:
 		var lane = randi() % 5
 	
 		car.speed = global_speed
-		car.position.y = 0
+		car.position.y = -50
 		car.position.x = screen_size.x / 3 + road_width * 0.1 + road_width * 0.2 * lane
 		car.add_to_group("moving")
 		car.add_to_group("obstacle")
@@ -119,7 +121,7 @@ func _on_obstacle_timer_timeout() -> void:
 		var lane = randi() % 5
 		
 		truck.speed = global_speed
-		truck.position.y = 0
+		truck.position.y = -100
 		truck.position.x = screen_size.x / 3 + road_width * 0.1 + road_width * 0.2 * lane
 		truck.add_to_group("moving")
 		truck.add_to_group("obstacle")
@@ -131,7 +133,7 @@ func _on_obstacle_timer_timeout() -> void:
 		var lane = randi() % 4
 		
 		swerving_car.speed = global_speed
-		swerving_car.position.y = 0
+		swerving_car.position.y = -50
 		swerving_car.position.x = screen_size.x / 3 + road_width * 0.1 + road_width * 0.2 * lane
 		swerving_car.start_x = swerving_car.position.x
 		swerving_car.lane_width = road_width * 0.2
@@ -145,7 +147,7 @@ func _on_obstacle_timer_timeout() -> void:
 		var lane = randi() % 4
 		
 		boost.speed = global_speed
-		boost.position.y = 0
+		boost.position.y = -50
 		boost.position.x = screen_size.x / 3 + road_width * 0.1 + road_width * 0.2 * lane
 		boost.add_to_group("moving")
 		boost.add_to_group("boost")
@@ -156,7 +158,7 @@ func _on_obstacle_timer_timeout() -> void:
 		var oil = oil_scene.instantiate()
 		var lane = randi() % 5
 
-		oil.position.y = 0
+		oil.position.y = -50
 		oil.position.x = screen_size.x / 3 + road_width * 0.1 + road_width * 0.2 * lane
 		oil.add_to_group("moving")
 		oil.z_index = -1
@@ -175,8 +177,7 @@ func stop_moving() -> void:
 	game_done = true
 	game_over.emit()
 
-func pause() -> void:
-	paused = true
+func pause_core() -> void:
 	$RoadLineTimer.stop()
 	$ObstacleTimer.stop()
 	$ScoreTimer.stop()
@@ -188,11 +189,8 @@ func pause() -> void:
 	for mover in movers:
 		if not mover.is_in_group("game"):
 			mover.stop_moving()
-	
-	pause_signal.emit(true)
 
-func unpause() -> void:
-	paused = false
+func unpause_core() -> void:
 	$RoadLineTimer.start()
 	$ObstacleTimer.start()
 	$ScoreTimer.start()
@@ -204,8 +202,48 @@ func unpause() -> void:
 	for mover in movers:
 		if not mover.is_in_group("game"):
 			mover.start_moving()
-			
+
+func pause() -> void:
+	paused = true
+	
+	pause_core()
+	
+	pause_signal.emit(true)
+
+func unpause() -> void:
+	paused = false
+	
+	unpause_core()
+	
 	pause_signal.emit(false)
+
+func open_help() -> void:
+	help_open = true
+	
+	pause_core()
+	
+	help_opened.emit(true)
+
+func close_help() -> void:
+	help_open = false
+	
+	unpause_core()
+	
+	help_opened.emit(false)
+
+func open_credits() -> void:
+	credits_open = true
+	
+	pause_core()
+	
+	credits_opened.emit(true)
+
+func close_credits() -> void:
+	credits_open = false
+	
+	unpause_core()
+	
+	credits_opened.emit(false)
 
 func restart() -> void:
 	var movers = get_tree().get_nodes_in_group("moving")
@@ -244,14 +282,23 @@ func _on_start_screen_start_game() -> void:
 	start_game()
 	start = false
 
-
 func _on_sidebar_pause_clicked() -> void:
 	pause()
 
 func _on_sidebar_help_clicked() -> void:
-	help_open = not help_open
-	help_opened.emit(help_open)
+	if help_open:
+		close_help()
+	else:
+		open_help()
 
 func _on_sidebar_credits_clicked() -> void:
-	credits_open = not credits_open
-	credits_opened.emit(credits_open)
+	if credits_open:
+		close_credits()
+	else:
+		open_credits()
+
+func _on_credits_screen_credits_closed() -> void:
+	if credits_open:
+		close_credits()
+	else:
+		open_credits()
