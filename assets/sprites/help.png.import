@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://khvqavyo6cl7"
-path="res://.godot/imported/roadblock.png-b2fafd683703cd185b0fa6d182a4184c.ctex"
+uid="uid://dyr1udi8f5ymy"
+path="res://.godot/imported/help.png-273efc1f4231a5216b71d79210e98b77.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/roadblock.png"
-dest_files=["res://.godot/imported/roadblock.png-b2fafd683703cd185b0fa6d182a4184c.ctex"]
+source_file="res://assets/sprites/help.png"
+dest_files=["res://.godot/imported/help.png-273efc1f4231a5216b71d79210e98b77.ctex"]
 
 [params]
 

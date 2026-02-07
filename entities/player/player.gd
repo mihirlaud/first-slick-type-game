@@ -24,8 +24,6 @@ func _process(delta: float) -> void:
 	if not control_lost:
 		if Input.is_action_pressed("turn_left"):
 			velocity.x -= 0.01
-			if max_speed == 1000:
-				$AnimatedSprite2D.play("turn_left")
 		elif Input.is_action_pressed("turn_right"):
 			velocity.x += 0.01
 			if max_speed == 1000:
@@ -37,6 +35,16 @@ func _process(delta: float) -> void:
 				velocity.x += 0.005
 		
 	velocity = velocity.clamp(Vector2(-1, 0), Vector2(1, 0))
+	
+	
+	if max_speed == 1000:
+		if velocity.x <= -0.05:
+			$AnimatedSprite2D.play("turn_left")
+		elif velocity.x >= 0.05:
+			$AnimatedSprite2D.play("turn_right")
+		else:
+			$AnimatedSprite2D.play("default")
+		
 	
 	var dv = velocity * delta * max_speed
 	

@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://q4yxt8u27144" path="res://assets/sprites/pause.png" id="3_3oodf"]
 [ext_resource type="Texture2D" uid="uid://dyr1udi8f5ymy" path="res://assets/sprites/help.png" id="4_2j5tl"]
 [ext_resource type="Texture2D" uid="uid://b7so7fgg1eipx" path="res://assets/sprites/settings.png" id="5_5lv26"]
+[ext_resource type="Texture2D" uid="uid://5je8ns04hvuy" path="res://assets/sprites/credits.png" id="6_2j5tl"]
 
 [node name="Sidebar" type="Control" unique_id=261893617]
 layout_mode = 3
@@ -64,5 +65,12 @@ offset_right = 8.0
 offset_bottom = 8.0
 icon = ExtResource("5_5lv26")
 
+[node name="CreditsButton" type="Button" parent="." unique_id=1125996795]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+icon = ExtResource("6_2j5tl")
+
 [connection signal="pressed" from="PauseButton" to="." method="_on_pause_button_pressed"]
 [connection signal="pressed" from="HelpButton" to="." method="_on_help_button_pressed"]
+[connection signal="pressed" from="CreditsButton" to="." method="_on_credits_button_pressed"]

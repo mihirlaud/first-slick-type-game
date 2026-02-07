@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://ddntmpnfk20j1"]
+
+[ext_resource type="Script" uid="uid://6vp5kkgrl0qv" path="res://ui/credits-screen/credits_screen.gd" id="1_yyybi"]
+[ext_resource type="FontFile" uid="uid://3uh7uwwtg1yw" path="res://assets/fonts/PressStart2P-Regular.ttf" id="2_kl11q"]
+[ext_resource type="Texture2D" uid="uid://cbedjnusf0roi" path="res://assets/sprites/close.png" id="3_ecmji"]
+
+[sub_resource type="GDScript" id="GDScript_kl11q"]
+script/source = "extends Button
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="CreditsScreen" type="Control" unique_id=1644036283]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yyybi")
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1940469808]
+layout_mode = 0
+offset_right = 600.0
+offset_bottom = 400.0
+color = Color(0.47058824, 0.47058824, 0.47058824, 0.78431374)
+
+[node name="Title" type="Label" parent="." unique_id=236848334]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 13.0
+offset_right = 600.0
+offset_bottom = 36.0
+theme_override_fonts/font = ExtResource("2_kl11q")
+theme_override_font_sizes/font_size = 20
+text = "CREDITS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Contents" type="Label" parent="." unique_id=2076473579]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 107.0
+offset_right = 559.0
+offset_bottom = 286.0
+text = "Art: DangerousSun
+Music & SFX: Manny6902
+Code: phanto86
+
+Font: Press Start 2P by CodeMan38,
+licensed under Open Font License Version 1.1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CloseButton" type="Button" parent="." unique_id=2106655074]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+scale = Vector2(0.75, 0.75)
+icon = ExtResource("3_ecmji")
+script = SubResource("GDScript_kl11q")
+
+[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]

@@ -7,6 +7,7 @@ signal game_over
 signal game_start
 signal pause_signal(is_paused)
 signal help_opened(is_opened)
+signal credits_opened(is_opened)
 
 var screen_size # Size of the game window.
 var road_width
@@ -23,6 +24,7 @@ var global_speed
 var paused
 var help_open
 var game_done
+var credits_open
 var start = true
 
 # Called when the node enters the scene tree for the first time.
@@ -30,6 +32,7 @@ func _ready() -> void:
 	$Player.visible = false
 	$Sidebar.visible = false
 	help_open = false
+	credits_open = false
 
 func start_game() -> void:
 	$RoadLineTimer.start()
@@ -248,3 +251,7 @@ func _on_sidebar_pause_clicked() -> void:
 func _on_sidebar_help_clicked() -> void:
 	help_open = not help_open
 	help_opened.emit(help_open)
+
+func _on_sidebar_credits_clicked() -> void:
+	credits_open = not credits_open
+	credits_opened.emit(credits_open)

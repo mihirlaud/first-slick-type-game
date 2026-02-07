@@ -2,6 +2,7 @@ extends Control
 
 signal pause_clicked
 signal help_clicked
+signal credits_clicked
 
 var hi_score
 
@@ -28,6 +29,9 @@ func _ready() -> void:
 	
 	$SettingsButton.position.x = 10 + $HelpButton.size.x + 10 + $PauseButton.size.x + 10
 	$SettingsButton.position.y = screen_size.y - 10 - $SettingsButton.size.y
+	
+	$CreditsButton.position.x = 10 + $SettingsButton.size.x + 10 + $HelpButton.size.x + 10 + $PauseButton.size.x + 10
+	$CreditsButton.position.y = screen_size.y - 10 - $CreditsButton.size.y
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -51,6 +55,8 @@ func _on_game_speed_changed(new_value: Variant) -> void:
 func _on_pause_button_pressed() -> void:
 	pause_clicked.emit()
 
-
 func _on_help_button_pressed() -> void:
 	help_clicked.emit()
+
+func _on_credits_button_pressed() -> void:
+	credits_clicked.emit()

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://duw4y6tgbjnj4"
-path="res://.godot/imported/Car.webp-788a6f8c8a9f102a6b61ae36c6b0da1c.ctex"
+uid="uid://bqn7fbgccxvql"
+path="res://.godot/imported/spritesheet.PNG-4ccdc07d28b2a74b798cc4d978798515.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Car.webp"
-dest_files=["res://.godot/imported/Car.webp-788a6f8c8a9f102a6b61ae36c6b0da1c.ctex"]
+source_file="res://assets/sprites/spritesheet.PNG"
+dest_files=["res://.godot/imported/spritesheet.PNG-4ccdc07d28b2a74b798cc4d978798515.ctex"]
 
 [params]
 

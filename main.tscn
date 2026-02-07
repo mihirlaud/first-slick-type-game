@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bwemm7mv4jsxi" path="res://ui/start-screen/start_screen.tscn" id="12_1u8w0"]
 [ext_resource type="PackedScene" uid="uid://b83vn2ffp4njc" path="res://ui/sound/Soundtrack.tscn" id="13_0odxb"]
 [ext_resource type="PackedScene" uid="uid://ccvm6th7c52ad" path="res://ui/help-screen/help_screen.tscn" id="14_w48qg"]
+[ext_resource type="PackedScene" uid="uid://ddntmpnfk20j1" path="res://ui/credits-screen/credits_screen.tscn" id="15_vivmo"]
 
 [node name="Main" type="Node2D" unique_id=561199391]
 script = ExtResource("1_ycdy4")
@@ -60,6 +61,9 @@ position = Vector2(566.685, 317.035)
 
 [node name="HelpScreen" parent="." unique_id=1644036283 instance=ExtResource("14_w48qg")]
 
+[node name="CreditsScreen" parent="." unique_id=926326471 instance=ExtResource("15_vivmo")]
+
+[connection signal="credits_opened" from="." to="CreditsScreen" method="_on_main_credits_opened"]
 [connection signal="game_over" from="." to="GameOverScreen" method="_on_game_game_over"]
 [connection signal="game_start" from="." to="GameOverScreen" method="_on_game_game_start"]
 [connection signal="help_opened" from="." to="HelpScreen" method="_on_game_help_opened"]
@@ -69,6 +73,7 @@ position = Vector2(566.685, 317.035)
 [connection signal="speed_changed" from="." to="Sidebar" method="_on_game_speed_changed"]
 [connection signal="timeout" from="RoadLineTimer" to="." method="_on_road_line_timer_timeout"]
 [connection signal="timeout" from="ObstacleTimer" to="." method="_on_obstacle_timer_timeout"]
+[connection signal="credits_clicked" from="Sidebar" to="." method="_on_sidebar_credits_clicked"]
 [connection signal="help_clicked" from="Sidebar" to="." method="_on_sidebar_help_clicked"]
 [connection signal="pause_clicked" from="Sidebar" to="." method="_on_sidebar_pause_clicked"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]

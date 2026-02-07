@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cuyx2pnn10ko8"
-path="res://.godot/imported/road_barrier.png-e0333218ea04e5ce6084a3f304cf869e.ctex"
+uid="uid://x65toj2sg38w"
+path="res://.godot/imported/enemy-cars.png-050c4fe15fb477f895513253173f9603.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/road_barrier.png"
-dest_files=["res://.godot/imported/road_barrier.png-e0333218ea04e5ce6084a3f304cf869e.ctex"]
+source_file="res://assets/sprites/enemy-cars.png"
+dest_files=["res://.godot/imported/enemy-cars.png-050c4fe15fb477f895513253173f9603.ctex"]
 
 [params]
 
