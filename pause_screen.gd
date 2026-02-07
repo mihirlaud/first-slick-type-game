@@ -9,8 +9,5 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func _on_game_game_over() -> void:
-	visible = true
-
-func _on_game_game_start() -> void:
-	visible = false
+func _on_game_pause_signal(is_paused: Variant) -> void:
+	visible = is_paused

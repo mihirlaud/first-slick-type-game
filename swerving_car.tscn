@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bcvwd0yy5vde1"]
+
+[ext_resource type="Script" uid="uid://ygxhyo55qkiw" path="res://swerving_car.gd" id="1_p7cwj"]
+[ext_resource type="Texture2D" uid="uid://cb2w5dlo0jkol" path="res://assets/sprites/car.png" id="1_t80ac"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p7cwj"]
+size = Vector2(64, 64)
+
+[node name="SwervingCar" type="Area2D" unique_id=508468080]
+script = ExtResource("1_p7cwj")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=35151877]
+rotation = 3.134645
+texture = ExtResource("1_t80ac")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=823968145]
+shape = SubResource("RectangleShape2D_p7cwj")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=207930443]
+rect = Rect2(-31, -31, 62, 63)

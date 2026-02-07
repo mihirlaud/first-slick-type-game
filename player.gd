@@ -47,12 +47,15 @@ func _process(delta: float) -> void:
 		rotation += 0.05
 	
 	var speed_factor = abs(velocity.x) * 4.0
+	if max_speed == 2000:
+		speed_factor *= 2
+	
 	if speed_factor > 0.1:
 		speed_mult += 0.001 * speed_factor
 	else:
 		speed_mult -= 0.002
 	
-	speed_mult = max(0.0, min(4.0, speed_mult))
+	speed_mult = max(0.0, min(4.0 if max_speed == 1000 else 9.0, speed_mult))
 	
 	if control_lost:
 		speed_mult = 0.0
@@ -76,6 +79,9 @@ func _on_area_entered(area: Area2D) -> void:
 		
 		var game = get_tree().get_first_node_in_group("game")
 		game.stop_moving()
+	elif area.is_in_group("boost"):
+		max_speed = 2000
+		$BoostTimer.start()
 
 func _on_control_loss_timer_timeout() -> void:
 	control_lost = false
@@ -85,3 +91,7 @@ func pause() -> void:
 
 func unpause() -> void:
 	paused = false
+
+
+func _on_boost_timer_timeout() -> void:
+	max_speed = 1000

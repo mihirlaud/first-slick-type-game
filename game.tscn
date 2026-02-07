@@ -6,9 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://by1uu6r5wl8ep" path="res://cone.tscn" id="4_7jktm"]
 [ext_resource type="PackedScene" uid="uid://jidc3lpv7kog" path="res://oil_spill.tscn" id="4_eow3j"]
 [ext_resource type="PackedScene" uid="uid://r0phmqp0a05t" path="res://road_block.tscn" id="4_ryrav"]
+[ext_resource type="PackedScene" uid="uid://bcvwd0yy5vde1" path="res://swerving_car.tscn" id="6_vef74"]
 [ext_resource type="PackedScene" uid="uid://76hwlk3uufyj" path="res://sidebar.tscn" id="7_eow3j"]
+[ext_resource type="PackedScene" uid="uid://c4fug6rgpgm5c" path="res://boost.tscn" id="7_hve3p"]
 [ext_resource type="PackedScene" uid="uid://cl8wlxxq5mffe" path="res://game_over_screen.tscn" id="8_j5wjh"]
 [ext_resource type="PackedScene" uid="uid://b83vn2ffp4njc" path="res://sound/Soundtrack.tscn" id="9_vef74"]
+[ext_resource type="PackedScene" uid="uid://dv8v1ys2xiw2i" path="res://pause_screen.tscn" id="11_mfdv2"]
+[ext_resource type="PackedScene" uid="uid://bwemm7mv4jsxi" path="res://start_screen.tscn" id="12_iotsf"]
 
 [node name="Game" type="Node2D" unique_id=561199391]
 script = ExtResource("1_e2o6t")
@@ -16,15 +20,15 @@ road_line_scene = ExtResource("2_fc0e3")
 cone_scene = ExtResource("4_7jktm")
 oil_scene = ExtResource("4_eow3j")
 roadblock_scene = ExtResource("4_ryrav")
+swerving_car_scene = ExtResource("6_vef74")
+boost_scene = ExtResource("7_hve3p")
 
 [node name="Player" parent="." unique_id=1916046122 instance=ExtResource("2_feb5d")]
 
 [node name="RoadLineTimer" type="Timer" parent="." unique_id=753022573]
 wait_time = 0.2
-autostart = true
 
 [node name="ObstacleTimer" type="Timer" parent="." unique_id=975008040]
-autostart = true
 
 [node name="Sidebar" parent="." unique_id=261893617 instance=ExtResource("7_eow3j")]
 anchors_preset = 0
@@ -35,24 +39,27 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [node name="ScoreTimer" type="Timer" parent="." unique_id=1326030749]
-autostart = true
 
 [node name="MultTimer" type="Timer" parent="." unique_id=1228179759]
 wait_time = 0.25
-autostart = true
 
 [node name="SpeedTimer" type="Timer" parent="." unique_id=2132199043]
 wait_time = 5.0
-autostart = true
 
 [node name="GameOverScreen" parent="." unique_id=1936066206 instance=ExtResource("8_j5wjh")]
 
 [node name="Soundtrack" parent="." unique_id=129093093 instance=ExtResource("9_vef74")]
 position = Vector2(566.685, 317.035)
+[node name="PauseScreen" parent="." unique_id=1854557042 instance=ExtResource("11_mfdv2")]
+top_level = true
+
+[node name="StartScreen" parent="." unique_id=1432398296 instance=ExtResource("12_iotsf")]
+top_level = true
 
 [connection signal="game_over" from="." to="GameOverScreen" method="_on_game_game_over"]
 [connection signal="game_start" from="." to="GameOverScreen" method="_on_game_game_start"]
 [connection signal="mult_changed" from="." to="Sidebar" method="_on_game_mult_changed"]
+[connection signal="pause_signal" from="." to="PauseScreen" method="_on_game_pause_signal"]
 [connection signal="score_changed" from="." to="Sidebar" method="_on_game_score_changed"]
 [connection signal="speed_changed" from="." to="Sidebar" method="_on_game_speed_changed"]
 [connection signal="timeout" from="RoadLineTimer" to="." method="_on_road_line_timer_timeout"]
@@ -60,3 +67,4 @@ position = Vector2(566.685, 317.035)
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="MultTimer" to="." method="_on_mult_timer_timeout"]
 [connection signal="timeout" from="SpeedTimer" to="." method="_on_speed_timer_timeout"]
+[connection signal="start_game" from="StartScreen" to="." method="_on_start_screen_start_game"]
