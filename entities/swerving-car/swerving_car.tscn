@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://bcvwd0yy5vde1"]
+
+[ext_resource type="Script" uid="uid://ygxhyo55qkiw" path="res://entities/swerving-car/swerving_car.gd" id="1_p7cwj"]
+[ext_resource type="Texture2D" uid="uid://x65toj2sg38w" path="res://assets/sprites/enemy-cars.png" id="2_wy11g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p7cwj"]
+size = Vector2(41, 97)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x0apo"]
+atlas = ExtResource("2_wy11g")
+region = Rect2(0, 0, 69, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qxogl"]
+atlas = ExtResource("2_wy11g")
+region = Rect2(0, 35, 69, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hk7sx"]
+atlas = ExtResource("2_wy11g")
+region = Rect2(0, 70, 69, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ey46q"]
+atlas = ExtResource("2_wy11g")
+region = Rect2(0, 105, 69, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1wmw"]
+atlas = ExtResource("2_wy11g")
+region = Rect2(0, 140, 69, 35)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4xq0f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x0apo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qxogl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hk7sx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ey46q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r1wmw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="SwervingCar" type="Area2D" unique_id=508468080]
+script = ExtResource("1_p7cwj")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=823968145]
+position = Vector2(1.5, 0.5)
+shape = SubResource("RectangleShape2D_p7cwj")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=207930443]
+rect = Rect2(-21, -48, 44, 98)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1980000589]
+rotation = -1.5707964
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_4xq0f")

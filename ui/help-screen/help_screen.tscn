@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://ccvm6th7c52ad"]
+
+[ext_resource type="Script" uid="uid://dblvdlvsx4taw" path="res://ui/help-screen/help_screen.gd" id="1_ko4xj"]
+[ext_resource type="FontFile" uid="uid://3uh7uwwtg1yw" path="res://assets/fonts/PressStart2P-Regular.ttf" id="2_esvn6"]
+[ext_resource type="Texture2D" uid="uid://cbedjnusf0roi" path="res://assets/sprites/close.png" id="3_bpc8q"]
+
+[node name="HelpScreen" type="Control" unique_id=1644036283]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ko4xj")
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1940469808]
+layout_mode = 0
+offset_right = 600.0
+offset_bottom = 400.0
+color = Color(0.47058824, 0.47058824, 0.47058824, 0.78431374)
+
+[node name="Title" type="Label" parent="." unique_id=236848334]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 13.0
+offset_right = 600.0
+offset_bottom = 36.0
+theme_override_fonts/font = ExtResource("2_esvn6")
+theme_override_font_sizes/font_size = 20
+text = "HELP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Contents" type="Label" parent="." unique_id=2076473579]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 107.0
+offset_right = 559.0
+offset_bottom = 286.0
+text = "Use A and D or the arrow keys to move side to side. The faster you
+move, the higher your score will go!
+
+Dodge cars, trucks, and oil spills, but make sure to pick up boosts
+to make yourself even more slick!
+
+[P] pauses the game and [R] restarts it."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CloseButton" type="Button" parent="." unique_id=2016390583]
+layout_mode = 0
+offset_left = 524.0
+offset_top = 4.0
+offset_right = 596.0
+offset_bottom = 76.0
+scale = Vector2(0.75, 0.75)
+icon = ExtResource("3_bpc8q")
+
+[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]

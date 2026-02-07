@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://dv8v1ys2xiw2i"]
+
+[ext_resource type="Script" uid="uid://dcv6ade3nq45d" path="res://ui/pause-screen/pause_screen.gd" id="1_gkx8r"]
+[ext_resource type="FontFile" uid="uid://3uh7uwwtg1yw" path="res://assets/fonts/PressStart2P-Regular.ttf" id="2_aw2dn"]
+
+[node name="PauseScreen" type="Control" unique_id=1854557042]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gkx8r")
+
+[node name="Label" type="Label" parent="." unique_id=1056855736]
+top_level = true
+layout_mode = 0
+offset_left = 185.0
+offset_top = 189.00002
+offset_right = 625.0
+offset_bottom = 315.0
+scale = Vector2(1.796837, 2.1915245)
+theme_override_fonts/font = ExtResource("2_aw2dn")
+theme_override_font_sizes/font_size = 40
+text = "PAUSED
+
+P to Resume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=866957243]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(28.8, 16.119999)
+color = Color(0, 0, 0, 0.65882355)

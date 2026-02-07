@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://r0phmqp0a05t"]
+
+[ext_resource type="Script" uid="uid://bujuewijuoag1" path="res://entities/truck/truck.gd" id="1_saub2"]
+[ext_resource type="Texture2D" uid="uid://bqn7fbgccxvql" path="res://assets/sprites/spritesheet.PNG" id="2_7cpvn"]
+
+[node name="Truck" type="Area2D" unique_id=461050500]
+rotation = -1.5700101
+script = ExtResource("1_saub2")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1755979165]
+scale = Vector2(1.5199373, 1.5199373)
+texture = ExtResource("2_7cpvn")
+region_enabled = true
+region_rect = Rect2(31.643433, 451.95706, 160.4785, 41.985657)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=961944297]
+scale = Vector2(1.0000046, 0.978015)
+polygon = PackedVector2Array(119.022224, 29.556221, 118.975044, -31.792517, -121.02221, -29.554613, -120.97503, 31.794125)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1459444716]
+position = Vector2(-86, 22)
+rect = Rect2(-10, -54, 215.90332, 64)
+metadata/_edit_group_ = true
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

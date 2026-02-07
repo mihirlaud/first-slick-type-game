@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://d4m2vfmt0qmk6"]
+
+[ext_resource type="Script" uid="uid://ctne8ko73t6an" path="res://main.gd" id="1_ycdy4"]
+[ext_resource type="PackedScene" uid="uid://o22dto312yjm" path="res://entities/road-line/road_line.tscn" id="2_w48qg"]
+[ext_resource type="PackedScene" uid="uid://by1uu6r5wl8ep" path="res://entities/car/car.tscn" id="3_vivmo"]
+[ext_resource type="PackedScene" uid="uid://jidc3lpv7kog" path="res://entities/oil-spill/oil_spill.tscn" id="4_2cqfq"]
+[ext_resource type="PackedScene" uid="uid://r0phmqp0a05t" path="res://entities/truck/truck.tscn" id="5_yaehf"]
+[ext_resource type="PackedScene" uid="uid://bcvwd0yy5vde1" path="res://entities/swerving-car/swerving_car.tscn" id="6_074og"]
+[ext_resource type="PackedScene" uid="uid://c4fug6rgpgm5c" path="res://entities/boost/boost.tscn" id="7_cegan"]
+[ext_resource type="PackedScene" uid="uid://bsw412i352les" path="res://entities/player/player.tscn" id="8_82xsv"]
+[ext_resource type="PackedScene" uid="uid://76hwlk3uufyj" path="res://ui/sidebar/sidebar.tscn" id="9_getpj"]
+[ext_resource type="PackedScene" uid="uid://cl8wlxxq5mffe" path="res://ui/game-over/game_over_screen.tscn" id="10_ryguw"]
+[ext_resource type="PackedScene" uid="uid://dv8v1ys2xiw2i" path="res://ui/pause-screen/pause_screen.tscn" id="11_d13ii"]
+[ext_resource type="PackedScene" uid="uid://bwemm7mv4jsxi" path="res://ui/start-screen/start_screen.tscn" id="12_1u8w0"]
+[ext_resource type="PackedScene" uid="uid://b83vn2ffp4njc" path="res://ui/sound/Soundtrack.tscn" id="13_0odxb"]
+[ext_resource type="PackedScene" uid="uid://ccvm6th7c52ad" path="res://ui/help-screen/help_screen.tscn" id="14_w48qg"]
+[ext_resource type="PackedScene" uid="uid://ddntmpnfk20j1" path="res://ui/credits-screen/credits_screen.tscn" id="15_vivmo"]
+
+[node name="Main" type="Node2D" unique_id=561199391]
+script = ExtResource("1_ycdy4")
+road_line_scene = ExtResource("2_w48qg")
+car_scene = ExtResource("3_vivmo")
+oil_scene = ExtResource("4_2cqfq")
+truck_scene = ExtResource("5_yaehf")
+swerving_car_scene = ExtResource("6_074og")
+boost_scene = ExtResource("7_cegan")
+
+[node name="Player" parent="." unique_id=1916046122 instance=ExtResource("8_82xsv")]
+
+[node name="RoadLineTimer" type="Timer" parent="." unique_id=753022573]
+wait_time = 0.2
+
+[node name="ObstacleTimer" type="Timer" parent="." unique_id=975008040]
+
+[node name="Sidebar" parent="." unique_id=261893617 instance=ExtResource("9_getpj")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="ScoreTimer" type="Timer" parent="." unique_id=1326030749]
+
+[node name="MultTimer" type="Timer" parent="." unique_id=1228179759]
+wait_time = 0.25
+
+[node name="SpeedTimer" type="Timer" parent="." unique_id=2132199043]
+wait_time = 5.0
+
+[node name="GameOverScreen" parent="." unique_id=1936066206 instance=ExtResource("10_ryguw")]
+
+[node name="PauseScreen" parent="." unique_id=1854557042 instance=ExtResource("11_d13ii")]
+top_level = true
+
+[node name="StartScreen" parent="." unique_id=1432398296 instance=ExtResource("12_1u8w0")]
+top_level = true
+
+[node name="Soundtrack" parent="." unique_id=129093093 instance=ExtResource("13_0odxb")]
+position = Vector2(566.685, 317.035)
+
+[node name="HelpScreen" parent="." unique_id=1644036283 instance=ExtResource("14_w48qg")]
+
+[node name="CreditsScreen" parent="." unique_id=926326471 instance=ExtResource("15_vivmo")]
+
+[connection signal="credits_opened" from="." to="CreditsScreen" method="_on_main_credits_opened"]
+[connection signal="game_over" from="." to="GameOverScreen" method="_on_game_game_over"]
+[connection signal="game_start" from="." to="GameOverScreen" method="_on_game_game_start"]
+[connection signal="help_opened" from="." to="HelpScreen" method="_on_game_help_opened"]
+[connection signal="mult_changed" from="." to="Sidebar" method="_on_game_mult_changed"]
+[connection signal="pause_signal" from="." to="PauseScreen" method="_on_game_pause_signal"]
+[connection signal="score_changed" from="." to="Sidebar" method="_on_game_score_changed"]
+[connection signal="speed_changed" from="." to="Sidebar" method="_on_game_speed_changed"]
+[connection signal="timeout" from="RoadLineTimer" to="." method="_on_road_line_timer_timeout"]
+[connection signal="timeout" from="ObstacleTimer" to="." method="_on_obstacle_timer_timeout"]
+[connection signal="credits_clicked" from="Sidebar" to="." method="_on_sidebar_credits_clicked"]
+[connection signal="help_clicked" from="Sidebar" to="." method="_on_sidebar_help_clicked"]
+[connection signal="pause_clicked" from="Sidebar" to="." method="_on_sidebar_pause_clicked"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
+[connection signal="timeout" from="MultTimer" to="." method="_on_mult_timer_timeout"]
+[connection signal="timeout" from="SpeedTimer" to="." method="_on_speed_timer_timeout"]
+[connection signal="start_game" from="StartScreen" to="." method="_on_start_screen_start_game"]

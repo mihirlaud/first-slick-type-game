@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://bwemm7mv4jsxi"]
+
+[ext_resource type="Script" uid="uid://b8fjrele2xcqe" path="res://ui/start-screen/start_screen.gd" id="1_ncxyx"]
+[ext_resource type="FontFile" uid="uid://3uh7uwwtg1yw" path="res://assets/fonts/PressStart2P-Regular.ttf" id="2_fv3w6"]
+
+[node name="StartScreen" type="Control" unique_id=1432398296]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ncxyx")
+
+[node name="BackLabel" type="Label" parent="." unique_id=183451342]
+top_level = true
+layout_mode = 0
+offset_left = 9.0000305
+offset_top = 168.99998
+offset_right = 569.0
+offset_bottom = 295.0
+scale = Vector2(2.02964, 2.1562543)
+theme_override_colors/font_color = Color(0.39215687, 0.40392157, 0, 1)
+theme_override_fonts/font = ExtResource("2_fv3w6")
+theme_override_font_sizes/font_size = 40
+text = "SLICK DRIFTER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1663948921]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(28.8, 16.119999)
+color = Color(0, 0, 0, 0.65882355)
+
+[node name="MiddleLabel" type="Label" parent="." unique_id=1112850002]
+top_level = true
+layout_mode = 0
+offset_left = 9.0000305
+offset_top = 168.99998
+offset_right = 569.0
+offset_bottom = 295.0
+scale = Vector2(2.02964, 2.1562543)
+theme_override_colors/font_color = Color(1, 1, 0.101960786, 1)
+theme_override_fonts/font = ExtResource("2_fv3w6")
+theme_override_font_sizes/font_size = 40
+text = "SLICK DRIFTER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ForwardLabel" type="Label" parent="." unique_id=2075168427]
+top_level = true
+layout_mode = 0
+offset_left = 9.0000305
+offset_top = 168.99998
+offset_right = 569.0
+offset_bottom = 295.0
+scale = Vector2(2.02964, 2.1562543)
+theme_override_fonts/font = ExtResource("2_fv3w6")
+theme_override_font_sizes/font_size = 40
+text = "SLICK DRIFTER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="." unique_id=372837245]
+top_level = true
+layout_mode = 0
+offset_left = 223.0
+offset_top = 386.0
+offset_right = 783.0
+offset_bottom = 512.0
+scale = Vector2(1.252641, 1.5562549)
+theme_override_fonts/font = ExtResource("2_fv3w6")
+theme_override_font_sizes/font_size = 20
+text = "[Enter] to START"
+horizontal_alignment = 1
+vertical_alignment = 1
