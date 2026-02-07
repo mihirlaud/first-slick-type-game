@@ -48,13 +48,13 @@ to make yourself even more slick!
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CloseButton" type="Button" parent="." unique_id=2016390583]
+[node name="CloseButton" type="TextureButton" parent="." unique_id=1071481252]
 layout_mode = 0
 offset_left = 524.0
 offset_top = 4.0
-offset_right = 596.0
-offset_bottom = 76.0
+offset_right = 548.0
+offset_bottom = 28.0
 scale = Vector2(0.75, 0.75)
-icon = ExtResource("3_bpc8q")
+texture_normal = ExtResource("3_bpc8q")
 
 [connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]

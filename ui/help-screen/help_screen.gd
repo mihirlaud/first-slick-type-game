@@ -11,8 +11,9 @@ func _ready() -> void:
 	position.x = screen_size.x / 2 - $ColorRect.size.x / 2
 	position.y = screen_size.y / 2 - $ColorRect.size.y / 2
 	
+	$CloseButton.scale = Vector2(2, 2)
 	$CloseButton.position.y = 10
-	$CloseButton.position.x = $ColorRect.size.x - $CloseButton.size.x + 5
+	$CloseButton.position.x = $ColorRect.size.x - $CloseButton.size.x * 2 - 10
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

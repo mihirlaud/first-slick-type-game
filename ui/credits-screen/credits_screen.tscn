@@ -4,20 +4,6 @@
 [ext_resource type="FontFile" uid="uid://3uh7uwwtg1yw" path="res://assets/fonts/PressStart2P-Regular.ttf" id="2_kl11q"]
 [ext_resource type="Texture2D" uid="uid://cbedjnusf0roi" path="res://assets/sprites/close.png" id="3_ecmji"]
 
-[sub_resource type="GDScript" id="GDScript_kl11q"]
-script/source = "extends Button
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-"
-
 [node name="CreditsScreen" type="Control" unique_id=1644036283]
 layout_mode = 3
 anchors_preset = 15
@@ -61,12 +47,10 @@ licensed under Open Font License Version 1.1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CloseButton" type="Button" parent="." unique_id=2106655074]
+[node name="CloseButton" type="TextureButton" parent="." unique_id=1240545928]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-scale = Vector2(0.75, 0.75)
-icon = ExtResource("3_ecmji")
-script = SubResource("GDScript_kl11q")
+offset_right = 24.0
+offset_bottom = 24.0
+texture_normal = ExtResource("3_ecmji")
 
-[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="CloseButton" to="." method="_on_texture_button_pressed"]

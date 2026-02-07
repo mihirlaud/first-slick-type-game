@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dyr1udi8f5ymy" path="res://assets/sprites/help.png" id="4_2j5tl"]
 [ext_resource type="Texture2D" uid="uid://b7so7fgg1eipx" path="res://assets/sprites/settings.png" id="5_5lv26"]
 [ext_resource type="Texture2D" uid="uid://5je8ns04hvuy" path="res://assets/sprites/credits.png" id="6_2j5tl"]
+[ext_resource type="Texture2D" uid="uid://cxg7q26rbpejg" path="res://assets/sprites/Dash.PNG" id="7_5lv26"]
 
 [node name="Sidebar" type="Control" unique_id=261893617]
 layout_mode = 3
@@ -16,7 +17,6 @@ offset_right = -853.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1nfj0")
-metadata/_edit_group_ = true
 
 [node name="ScoreLabel" type="Label" parent="." unique_id=1198462023]
 top_level = true
@@ -45,31 +45,50 @@ theme_override_font_sizes/font_size = 30
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PauseButton" type="Button" parent="." unique_id=1822547728]
+[node name="PauseButton" type="TextureButton" parent="." unique_id=958205603]
 layout_mode = 0
 offset_left = 6.0
 offset_top = 91.0
 offset_right = 14.0
 offset_bottom = 99.0
-icon = ExtResource("3_3oodf")
+texture_normal = ExtResource("3_3oodf")
 
-[node name="HelpButton" type="Button" parent="." unique_id=255785417]
+[node name="HelpButton" type="TextureButton" parent="." unique_id=1273378185]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-icon = ExtResource("4_2j5tl")
+offset_right = 24.0
+offset_bottom = 24.0
+texture_normal = ExtResource("4_2j5tl")
 
-[node name="SettingsButton" type="Button" parent="." unique_id=1515437754]
+[node name="SettingsButton" type="TextureButton" parent="." unique_id=63185446]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-icon = ExtResource("5_5lv26")
+offset_right = 24.0
+offset_bottom = 24.0
+texture_normal = ExtResource("5_5lv26")
 
-[node name="CreditsButton" type="Button" parent="." unique_id=1125996795]
+[node name="CreditsButton" type="TextureButton" parent="." unique_id=1265195305]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-icon = ExtResource("6_2j5tl")
+offset_right = 24.0
+offset_bottom = 24.0
+texture_normal = ExtResource("6_2j5tl")
+
+[node name="DashboardSprite" type="Sprite2D" parent="." unique_id=927181018]
+position = Vector2(0, 200)
+texture = ExtResource("7_5lv26")
+region_enabled = true
+region_rect = Rect2(63.84828, 119.29122, 398.586, 206.30087)
+
+[node name="SpeedNeedleSprite" type="Sprite2D" parent="." unique_id=31017232]
+texture = ExtResource("7_5lv26")
+offset = Vector2(0, -40)
+region_enabled = true
+region_rect = Rect2(244.2358, 73.60552, 6.3444977, 26.828041)
+
+[node name="MultNeedleSprite" type="Sprite2D" parent="." unique_id=1046458346]
+position = Vector2(110, 62)
+texture = ExtResource("7_5lv26")
+offset = Vector2(0, -40)
+region_enabled = true
+region_rect = Rect2(244.2358, 73.60552, 6.3444977, 26.828041)
 
 [connection signal="pressed" from="PauseButton" to="." method="_on_pause_button_pressed"]
 [connection signal="pressed" from="HelpButton" to="." method="_on_help_button_pressed"]

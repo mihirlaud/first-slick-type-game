@@ -6,9 +6,13 @@ signal credits_clicked
 signal settings_clicked
 
 var hi_score
+var speed_dash_angle = -70
+var mult_dash_angle = -140
+var t
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	t = 0
 	var screen_size = get_viewport_rect().size
 	hi_score = 0
 	
@@ -22,24 +26,46 @@ func _ready() -> void:
 	
 	$ColorRect.size = Vector2(screen_size.x / 3, screen_size.y)
 	
+	$PauseButton.scale = Vector2(2, 2)
 	$PauseButton.position.x = 10
-	$PauseButton.position.y = screen_size.y - 10 - $PauseButton.size.y
+	$PauseButton.position.y = screen_size.y - 10 - $PauseButton.size.y * 2
 	
-	$HelpButton.position.x = 10 + $PauseButton.size.x + 10
-	$HelpButton.position.y = screen_size.y - 10 - $HelpButton.size.y
+	$HelpButton.scale = Vector2(2, 2)
+	$HelpButton.position.x = 10 + $PauseButton.size.x * 2 + 10
+	$HelpButton.position.y = screen_size.y - 10 - $HelpButton.size.y * 2
 	
-	$SettingsButton.position.x = 10 + $HelpButton.size.x + 10 + $PauseButton.size.x + 10
-	$SettingsButton.position.y = screen_size.y - 10 - $SettingsButton.size.y
+	$SettingsButton.scale = Vector2(2, 2)
+	$SettingsButton.position.x = 10 + $HelpButton.size.x * 2 + 10 + $PauseButton.size.x * 2 + 10
+	$SettingsButton.position.y = screen_size.y - 10 - $SettingsButton.size.y * 2
 	
-	$CreditsButton.position.x = 10 + $SettingsButton.size.x + 10 + $HelpButton.size.x + 10 + $PauseButton.size.x + 10
-	$CreditsButton.position.y = screen_size.y - 10 - $CreditsButton.size.y
+	$CreditsButton.scale = Vector2(2, 2)
+	$CreditsButton.position.x = 10 + $SettingsButton.size.x * 2 + 10 + $HelpButton.size.x * 2 + 10 + $PauseButton.size.x * 2 + 10
+	$CreditsButton.position.y = screen_size.y - 10 - $CreditsButton.size.y * 2
+	
+	var scaling = (screen_size.x / 3) / 390
+	$DashboardSprite.position.x = screen_size.x / 6
+	$DashboardSprite.position.y = screen_size.y / 2
+	$DashboardSprite.transform = $DashboardSprite.transform.scaled(Vector2(scaling, scaling))
+	
+	# -70 to 140
+	$SpeedNeedleSprite.position.x = $DashboardSprite.position.x - 75
+	$SpeedNeedleSprite.position.y = $DashboardSprite.position.y + 15
+	$SpeedNeedleSprite.rotation_degrees = -70
+	
+	# -140 to 140
+	$MultNeedleSprite.position.x = $DashboardSprite.position.x + 65
+	$MultNeedleSprite.position.y = $DashboardSprite.position.y + 15
+	$MultNeedleSprite.rotation_degrees = mult_dash_angle
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	t += delta
+	$SpeedNeedleSprite.rotation_degrees = speed_dash_angle + sin(2*t) * 5
 
 func _on_game_mult_changed(new_value: Variant) -> void:
-	pass
+	mult_dash_angle = (new_value - 1.0) / (10.0 - 1.0) * (140 - -140) + -140
+	$MultNeedleSprite.rotation_degrees = mult_dash_angle
 
 func _on_game_score_changed(new_value: Variant) -> void:
 	$ScoreLabel.text = str("SCORE:\n", int(round(new_value)))
@@ -49,9 +75,15 @@ func _on_game_score_changed(new_value: Variant) -> void:
 
 func reset() -> void:
 	$ScoreLabel.text = "SCORE:\n0"
+	speed_dash_angle = -70
+	mult_dash_angle = -140
+	$MultNeedleSprite.rotation_degrees = mult_dash_angle
+	$SpeedNeedleSprite.rotation_degrees = speed_dash_angle
 
 func _on_game_speed_changed(new_value: Variant) -> void:
-	pass
+	var actual_value = new_value / 10.0
+	speed_dash_angle = (actual_value - 50.0) / (200.0 - 50.0) * (140 - -70) + -70
+	$SpeedNeedleSprite.rotation_degrees = speed_dash_angle
 
 func _on_pause_button_pressed() -> void:
 	pause_clicked.emit()
