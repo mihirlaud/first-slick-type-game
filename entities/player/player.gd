@@ -14,6 +14,7 @@ func _ready() -> void:
 	velocity = Vector2.ZERO
 	screen_size = get_viewport_rect().size
 	position = Vector2(start_x, player_y)
+	$AnimatedSprite2D.play("default")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -23,8 +24,12 @@ func _process(delta: float) -> void:
 	if not control_lost:
 		if Input.is_action_pressed("turn_left"):
 			velocity.x -= 0.01
+			if max_speed == 1000:
+				$AnimatedSprite2D.play("turn_left")
 		elif Input.is_action_pressed("turn_right"):
 			velocity.x += 0.01
+			if max_speed == 1000:
+				$AnimatedSprite2D.play("turn_right")
 		else:
 			if velocity.x > 0:
 				velocity.x -= 0.005
@@ -72,6 +77,7 @@ func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("oil"):
 		control_lost = true
 		$ControlLossTimer.start()
+		$AnimatedSprite2D.play("oily")
 	elif area.is_in_group("obstacle"):
 		var moving = get_tree().get_nodes_in_group("moving")
 		for node in moving:
@@ -83,6 +89,7 @@ func _on_area_entered(area: Area2D) -> void:
 		max_speed = 2000
 		$BoostTimer.start()
 		area.queue_free()
+		$AnimatedSprite2D.play("boost_anim")
 
 func _on_control_loss_timer_timeout() -> void:
 	control_lost = false

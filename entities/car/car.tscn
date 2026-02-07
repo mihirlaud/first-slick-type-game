@@ -1,18 +1,63 @@
 [gd_scene format=3 uid="uid://by1uu6r5wl8ep"]
 
 [ext_resource type="Script" uid="uid://c04tvb6hnyfoc" path="res://entities/car/car.gd" id="1_8awa6"]
-[ext_resource type="Texture2D" uid="uid://cv4t0b011pbf2" path="res://assets/sprites/cone.png" id="1_gvldi"]
+[ext_resource type="Texture2D" uid="uid://x65toj2sg38w" path="res://assets/sprites/enemy-cars.png" id="2_1ang0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x0apo"]
+atlas = ExtResource("2_1ang0")
+region = Rect2(0, 0, 69, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qxogl"]
+atlas = ExtResource("2_1ang0")
+region = Rect2(0, 35, 69, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hk7sx"]
+atlas = ExtResource("2_1ang0")
+region = Rect2(0, 70, 69, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ey46q"]
+atlas = ExtResource("2_1ang0")
+region = Rect2(0, 105, 69, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1wmw"]
+atlas = ExtResource("2_1ang0")
+region = Rect2(0, 140, 69, 35)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yotxw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x0apo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qxogl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hk7sx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ey46q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r1wmw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Car" type="Area2D" unique_id=1626521700]
 script = ExtResource("1_8awa6")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1112375743]
-texture = ExtResource("1_gvldi")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1959327552]
+rotation = -1.5707964
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_yotxw")
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="." unique_id=798121947]
-polygon = PackedVector2Array(-1, -32, -32, 32, 32, 32)
+polygon = PackedVector2Array(19, -47, -19, -47, -21, 47, 23, 47)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1516708637]
-rect = Rect2(-32, -31, 64, 63)
+rect = Rect2(-21, -48, 44, 98)
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
