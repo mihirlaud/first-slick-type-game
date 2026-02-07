@@ -80,3 +80,4 @@ position = Vector2(566.685, 317.035)
 [connection signal="timeout" from="MultTimer" to="." method="_on_mult_timer_timeout"]
 [connection signal="timeout" from="SpeedTimer" to="." method="_on_speed_timer_timeout"]
 [connection signal="start_game" from="StartScreen" to="." method="_on_start_screen_start_game"]
+[connection signal="credits_closed" from="CreditsScreen" to="." method="_on_credits_screen_credits_closed"]
