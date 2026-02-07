@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cl8wlxxq5mffe"]
 
 [ext_resource type="Script" uid="uid://b1nwir64ust2n" path="res://ui/game-over/game_over_screen.gd" id="1_gt22q"]
+[ext_resource type="FontFile" uid="uid://3uh7uwwtg1yw" path="res://assets/fonts/PressStart2P-Regular.ttf" id="2_sh227"]
 
 [node name="GameOverScreen" type="Control" unique_id=1936066206]
 top_level = true
@@ -12,19 +13,70 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_gt22q")
 
-[node name="Label" type="Label" parent="." unique_id=307463330]
-top_level = true
-layout_mode = 0
-offset_left = 425.0
-offset_top = 272.00003
-offset_right = 517.0
-offset_bottom = 295.00003
-scale = Vector2(2.9019523, 3.791525)
-text = "GAME OVER"
-
 [node name="ColorRect" type="ColorRect" parent="." unique_id=622845477]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(28.8, 16.119999)
 color = Color(0.6392157, 0, 0, 0.65882355)
+
+[node name="BackLabel" type="Label" parent="." unique_id=661220997]
+top_level = true
+visibility_layer = 4
+layout_mode = 0
+offset_left = 1.0
+offset_top = 253.0
+offset_right = 397.62955
+offset_bottom = 293.0
+scale = Vector2(2.9019523, 3.791525)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_sh227")
+theme_override_font_sizes/font_size = 40
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MiddleLabel" type="Label" parent="." unique_id=218265924]
+top_level = true
+visibility_layer = 2
+layout_mode = 0
+offset_left = 1.0
+offset_top = 253.0
+offset_right = 397.28494
+offset_bottom = 293.0
+scale = Vector2(2.9019523, 3.791525)
+theme_override_colors/font_color = Color(0.47058824, 0.47058824, 0.47058824, 1)
+theme_override_fonts/font = ExtResource("2_sh227")
+theme_override_font_sizes/font_size = 40
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ForwardLabel" type="Label" parent="." unique_id=307463330]
+top_level = true
+layout_mode = 0
+offset_left = 1.0
+offset_top = 253.0
+offset_right = 396.94034
+offset_bottom = 293.0
+scale = Vector2(2.9019523, 3.791525)
+theme_override_fonts/font = ExtResource("2_sh227")
+theme_override_font_sizes/font_size = 40
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="." unique_id=431903722]
+top_level = true
+layout_mode = 0
+offset_left = 3.0
+offset_top = 496.0
+offset_right = 398.94034
+offset_bottom = 536.0
+scale = Vector2(2.9019523, 3.791525)
+theme_override_colors/font_color = Color(0.47058824, 0.47058824, 0.47058824, 1)
+theme_override_fonts/font = ExtResource("2_sh227")
+theme_override_font_sizes/font_size = 16
+text = "R to Restart"
+horizontal_alignment = 1
+vertical_alignment = 1

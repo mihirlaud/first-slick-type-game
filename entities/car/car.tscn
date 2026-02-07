@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c04tvb6hnyfoc" path="res://entities/car/car.gd" id="1_8awa6"]
 [ext_resource type="Texture2D" uid="uid://cv4t0b011pbf2" path="res://assets/sprites/cone.png" id="1_gvldi"]
 
-[node name="Cone" type="Area2D" unique_id=1626521700]
+[node name="Car" type="Area2D" unique_id=1626521700]
 script = ExtResource("1_8awa6")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1112375743]

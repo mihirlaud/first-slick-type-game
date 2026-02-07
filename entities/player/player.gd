@@ -82,6 +82,7 @@ func _on_area_entered(area: Area2D) -> void:
 	elif area.is_in_group("boost"):
 		max_speed = 2000
 		$BoostTimer.start()
+		area.queue_free()
 
 func _on_control_loss_timer_timeout() -> void:
 	control_lost = false

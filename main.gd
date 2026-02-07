@@ -6,13 +6,14 @@ signal speed_changed(new_value)
 signal game_over
 signal game_start
 signal pause_signal(is_paused)
+signal help_opened(is_opened)
 
 var screen_size # Size of the game window.
 var road_width
 @export var road_line_scene: PackedScene
-@export var cone_scene: PackedScene
+@export var car_scene: PackedScene
 @export var oil_scene: PackedScene
-@export var roadblock_scene: PackedScene
+@export var truck_scene: PackedScene
 @export var swerving_car_scene: PackedScene
 @export var boost_scene: PackedScene
 @export var frequency = 0.75
@@ -20,6 +21,7 @@ var score
 var mult
 var global_speed
 var paused
+var help_open
 var game_done
 var start = true
 
@@ -27,6 +29,7 @@ var start = true
 func _ready() -> void:
 	$Player.visible = false
 	$Sidebar.visible = false
+	help_open = false
 
 func start_game() -> void:
 	$RoadLineTimer.start()
@@ -36,6 +39,7 @@ func start_game() -> void:
 	$SpeedTimer.start()
 	$Player.visible = true
 	$Sidebar.visible = true
+	$Player.z_index = -1
 	
 	paused = false
 	game_done = false
@@ -61,6 +65,7 @@ func start_game() -> void:
 			road_line.position.y = i * gap
 			road_line.position.x = screen_size.x / 3 + (j + 1) * road_width / 5
 			road_line.add_to_group("moving")
+			road_line.z_index = -1
 	
 			add_child(road_line)
 	
@@ -68,10 +73,14 @@ func start_game() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("restart"):
+	if not start and Input.is_action_just_pressed("restart"):
 		restart()
 	
-	if Input.is_action_just_pressed("pause") and not game_done:
+	if not start and Input.is_action_just_pressed("help"):
+		help_open = not help_open
+		help_opened.emit(help_open)
+	
+	if not start and Input.is_action_just_pressed("pause") and not game_done:
 		if paused:
 			unpause()
 		else:
@@ -84,33 +93,36 @@ func _on_road_line_timer_timeout() -> void:
 		road_line.position.y = 0
 		road_line.position.x = screen_size.x / 3 + (j + 1) * road_width / 5
 		road_line.add_to_group("moving")
+		road_line.z_index = -1
 	
 		add_child(road_line)
 		
 func _on_obstacle_timer_timeout() -> void:
 	var selection = randi() % 100
 	if selection < 40:
-		var cone = cone_scene.instantiate()
+		var car = car_scene.instantiate()
 		var lane = randi() % 5
 	
-		cone.speed = global_speed
-		cone.position.y = 0
-		cone.position.x = screen_size.x / 3 + road_width * 0.1 + road_width * 0.2 * lane
-		cone.add_to_group("moving")
-		cone.add_to_group("obstacle")
+		car.speed = global_speed
+		car.position.y = 0
+		car.position.x = screen_size.x / 3 + road_width * 0.1 + road_width * 0.2 * lane
+		car.add_to_group("moving")
+		car.add_to_group("obstacle")
+		car.z_index = -1
 		
-		add_child(cone)
+		add_child(car)
 	elif selection < 60:
-		var road_block = roadblock_scene.instantiate()
+		var truck = truck_scene.instantiate()
 		var lane = randi() % 5
 		
-		road_block.speed = global_speed
-		road_block.position.y = 0
-		road_block.position.x = screen_size.x / 3 + road_width * 0.1 + road_width * 0.2 * lane
-		road_block.add_to_group("moving")
-		road_block.add_to_group("obstacle")
+		truck.speed = global_speed
+		truck.position.y = 0
+		truck.position.x = screen_size.x / 3 + road_width * 0.1 + road_width * 0.2 * lane
+		truck.add_to_group("moving")
+		truck.add_to_group("obstacle")
+		truck.z_index = -1
 		
-		add_child(road_block)
+		add_child(truck)
 	elif selection < 70:
 		var swerving_car = swerving_car_scene.instantiate()
 		var lane = randi() % 4
@@ -122,6 +134,7 @@ func _on_obstacle_timer_timeout() -> void:
 		swerving_car.lane_width = road_width * 0.2
 		swerving_car.add_to_group("moving")
 		swerving_car.add_to_group("obstacle")
+		swerving_car.z_index = -1
 		
 		add_child(swerving_car)
 	elif selection < 80:
@@ -133,6 +146,7 @@ func _on_obstacle_timer_timeout() -> void:
 		boost.position.x = screen_size.x / 3 + road_width * 0.1 + road_width * 0.2 * lane
 		boost.add_to_group("moving")
 		boost.add_to_group("boost")
+		boost.z_index = -1
 		
 		add_child(boost)
 	else:
@@ -142,6 +156,7 @@ func _on_obstacle_timer_timeout() -> void:
 		oil.position.y = 0
 		oil.position.x = screen_size.x / 3 + road_width * 0.1 + road_width * 0.2 * lane
 		oil.add_to_group("moving")
+		oil.z_index = -1
 		
 		add_child(oil)
 
@@ -224,3 +239,12 @@ func _on_speed_timer_timeout() -> void:
 
 func _on_start_screen_start_game() -> void:
 	start_game()
+	start = false
+
+
+func _on_sidebar_pause_clicked() -> void:
+	pause()
+
+func _on_sidebar_help_clicked() -> void:
+	help_open = not help_open
+	help_opened.emit(help_open)
