@@ -23,7 +23,7 @@ scale = Vector2(2.02964, 2.1562543)
 theme_override_colors/font_color = Color(0.39215687, 0.40392157, 0, 1)
 theme_override_fonts/font = ExtResource("2_fv3w6")
 theme_override_font_sizes/font_size = 40
-text = "SLICK DRIFTER"
+text = "SLICK DRIVER"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -45,7 +45,7 @@ scale = Vector2(2.02964, 2.1562543)
 theme_override_colors/font_color = Color(1, 1, 0.101960786, 1)
 theme_override_fonts/font = ExtResource("2_fv3w6")
 theme_override_font_sizes/font_size = 40
-text = "SLICK DRIFTER"
+text = "SLICK DRIVER"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -59,7 +59,7 @@ offset_bottom = 295.0
 scale = Vector2(2.02964, 2.1562543)
 theme_override_fonts/font = ExtResource("2_fv3w6")
 theme_override_font_sizes/font_size = 40
-text = "SLICK DRIFTER"
+text = "SLICK DRIVER"
 horizontal_alignment = 1
 vertical_alignment = 1
 
