@@ -22,6 +22,5 @@ func _on_close_button_pressed() -> void:
 	visible = false
 	credits_closed.emit()
 	
-
 func _on_main_credits_opened(is_opened: Variant) -> void:
 	visible = is_opened

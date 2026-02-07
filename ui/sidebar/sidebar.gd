@@ -3,6 +3,7 @@ extends Control
 signal pause_clicked
 signal help_clicked
 signal credits_clicked
+signal settings_clicked
 
 var hi_score
 
@@ -60,3 +61,6 @@ func _on_help_button_pressed() -> void:
 
 func _on_credits_button_pressed() -> void:
 	credits_clicked.emit()
+
+func _on_settings_button_pressed() -> void:
+	settings_clicked.emit()

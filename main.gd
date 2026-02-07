@@ -9,6 +9,7 @@ signal pause_signal(is_paused)
 signal stop_sound(stop)
 signal help_opened(is_opened)
 signal credits_opened(is_opened)
+signal settings_opened(is_opened)
 
 var screen_size # Size of the game window.
 var road_width
@@ -26,6 +27,7 @@ var paused
 var help_open
 var game_done
 var credits_open
+var settings_open
 var start = true
 
 # Called when the node enters the scene tree for the first time.
@@ -34,6 +36,7 @@ func _ready() -> void:
 	$Sidebar.visible = false
 	help_open = false
 	credits_open = false
+	settings_open = false
 
 func start_game() -> void:
 	$RoadLineTimer.start()
@@ -250,6 +253,20 @@ func close_credits() -> void:
 	
 	credits_opened.emit(false)
 
+func open_settings() -> void:
+	settings_open = true
+	
+	pause_core()
+	
+	settings_opened.emit(true)
+
+func close_settings() -> void:
+	settings_open = false
+	
+	unpause_core()
+	
+	settings_opened.emit(false)
+
 func restart() -> void:
 	var movers = get_tree().get_nodes_in_group("moving")
 	for mover in movers:
@@ -313,3 +330,15 @@ func _on_help_screen_help_closed() -> void:
 		close_help()
 	else:
 		open_help()
+
+func _on_sidebar_settings_clicked() -> void:
+	if settings_open:
+		close_settings()
+	else:
+		open_settings()
+
+func _on_settings_screen_settings_closed() -> void:
+	if settings_open:
+		close_settings()
+	else:
+		open_settings()
