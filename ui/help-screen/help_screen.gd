@@ -1,5 +1,7 @@
 extends Control
 
+signal help_closed
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	visible = false
@@ -18,6 +20,7 @@ func _process(delta: float) -> void:
 
 func _on_close_button_pressed() -> void:
 	visible = false
+	help_closed.emit()
 
 func _on_game_help_opened(is_opened) -> void:
 	visible = is_opened
