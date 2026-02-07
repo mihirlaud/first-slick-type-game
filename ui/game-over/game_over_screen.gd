@@ -5,15 +5,6 @@ extends Control
 func _ready() -> void:
 	var screen_size = get_viewport_rect().size
 	
-	$ForwardLabel.position.x = 0
-	$ForwardLabel.position.y = screen_size.y / 2 - 40
-	
-	$MiddleLabel.position.x = 10
-	$MiddleLabel.position.y = screen_size.y / 2 - 50
-	
-	$BackLabel.position.x = 20
-	$BackLabel.position.y = screen_size.y / 2 - 60
-	
 	visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

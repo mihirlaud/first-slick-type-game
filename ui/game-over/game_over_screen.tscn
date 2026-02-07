@@ -14,20 +14,29 @@ grow_vertical = 2
 script = ExtResource("1_gt22q")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=622845477]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.99500006
+offset_right = -1112.0
+offset_bottom = -604.7601
+grow_horizontal = 2
 scale = Vector2(28.8, 16.119999)
 color = Color(0.6392157, 0, 0, 0.65882355)
 
 [node name="BackLabel" type="Label" parent="." unique_id=661220997]
 top_level = true
 visibility_layer = 4
-layout_mode = 0
-offset_left = 1.0
-offset_top = 253.0
-offset_right = 397.62955
-offset_bottom = 293.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -555.0
+offset_top = -90.999985
+offset_right = -158.37045
+offset_bottom = -51.0
 scale = Vector2(2.9019523, 3.791525)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_sh227")
@@ -39,11 +48,16 @@ vertical_alignment = 1
 [node name="MiddleLabel" type="Label" parent="." unique_id=218265924]
 top_level = true
 visibility_layer = 2
-layout_mode = 0
-offset_left = 1.0
-offset_top = 253.0
-offset_right = 397.28494
-offset_bottom = 293.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -565.0
+offset_top = -81.0
+offset_right = -168.71506
+offset_bottom = -41.0
 scale = Vector2(2.9019523, 3.791525)
 theme_override_colors/font_color = Color(0.47058824, 0.47058824, 0.47058824, 1)
 theme_override_fonts/font = ExtResource("2_sh227")
@@ -54,11 +68,16 @@ vertical_alignment = 1
 
 [node name="ForwardLabel" type="Label" parent="." unique_id=307463330]
 top_level = true
-layout_mode = 0
-offset_left = 1.0
-offset_top = 253.0
-offset_right = 396.94034
-offset_bottom = 293.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.499
+anchor_top = 0.5
+anchor_right = 0.499
+anchor_bottom = 0.5
+offset_left = -568.848
+offset_top = -70.99997
+offset_right = -172.90771
+offset_bottom = -30.99997
 scale = Vector2(2.9019523, 3.791525)
 theme_override_fonts/font = ExtResource("2_sh227")
 theme_override_font_sizes/font_size = 40
@@ -68,11 +87,16 @@ vertical_alignment = 1
 
 [node name="Label" type="Label" parent="." unique_id=431903722]
 top_level = true
-layout_mode = 0
-offset_left = 3.0
-offset_top = 496.0
-offset_right = 398.94034
-offset_bottom = 536.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.48400003
+anchor_top = 1.0
+anchor_right = 0.48400003
+anchor_bottom = 1.0
+offset_left = -279.56805
+offset_top = -131.0
+offset_right = -87.568054
+offset_bottom = -115.0
 scale = Vector2(2.9019523, 3.791525)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_sh227")
@@ -80,3 +104,5 @@ theme_override_font_sizes/font_size = 16
 text = "R to Restart"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[connection signal="resized" from="." to="." method="_on_resized"]

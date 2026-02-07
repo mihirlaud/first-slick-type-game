@@ -17,14 +17,7 @@ func _ready() -> void:
 	hi_score = 0
 	
 	$ScoreLabel.text = "SCORE:\n0"
-	$ScoreLabel.size = Vector2(screen_size.x / 3, 80)
-	$ScoreLabel.position.y = 10
-	
 	$HiScoreLabel.text = "HI SCORE:\n0"
-	$HiScoreLabel.size = Vector2(screen_size.x / 3, 80)
-	$HiScoreLabel.position.y = 100
-	
-	$ColorRect.size = Vector2(screen_size.x / 3, screen_size.y)
 	
 	$PauseButton.scale = Vector2(2, 2)
 	$PauseButton.position.x = 10
@@ -41,21 +34,6 @@ func _ready() -> void:
 	$CreditsButton.scale = Vector2(2, 2)
 	$CreditsButton.position.x = 10 + $SettingsButton.size.x * 2 + 10 + $HelpButton.size.x * 2 + 10 + $PauseButton.size.x * 2 + 10
 	$CreditsButton.position.y = screen_size.y - 10 - $CreditsButton.size.y * 2
-	
-	var scaling = (screen_size.x / 3) / 390
-	$DashboardSprite.position.x = screen_size.x / 6
-	$DashboardSprite.position.y = screen_size.y / 2
-	$DashboardSprite.transform = $DashboardSprite.transform.scaled(Vector2(scaling, scaling))
-	
-	# -70 to 140
-	$SpeedNeedleSprite.position.x = $DashboardSprite.position.x - 75
-	$SpeedNeedleSprite.position.y = $DashboardSprite.position.y + 15
-	$SpeedNeedleSprite.rotation_degrees = -70
-	
-	# -140 to 140
-	$MultNeedleSprite.position.x = $DashboardSprite.position.x + 65
-	$MultNeedleSprite.position.y = $DashboardSprite.position.y + 15
-	$MultNeedleSprite.rotation_degrees = mult_dash_angle
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
