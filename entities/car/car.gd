@@ -7,6 +7,7 @@ var moving = true
 func _ready() -> void:
 	var color = randi() % 5
 	$AnimatedSprite2D.set_frame_and_progress(color, 0.0)
+	rotation_degrees = 180
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

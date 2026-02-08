@@ -9,11 +9,13 @@ var hi_score
 var speed_dash_angle = -70
 var mult_dash_angle = -140
 var t
+var dash_texture
+var screen_size
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	t = 0
-	var screen_size = get_viewport_rect().size
+	screen_size = get_viewport_rect().size
 	hi_score = 0
 	
 	$ScoreLabel.text = "SCORE:\n0"
@@ -35,17 +37,33 @@ func _ready() -> void:
 	$CreditsButton.position.x = 10 + $SettingsButton.size.x * 2 + 10 + $HelpButton.size.x * 2 + 10 + $PauseButton.size.x * 2 + 10
 	$CreditsButton.position.y = screen_size.y - 10 - $CreditsButton.size.y * 2
 	
-	$SpeedNeedleSprite.position.x = screen_size.x / 6 - 70
-	$SpeedNeedleSprite.position.y = screen_size.y / 2 + 40
+	dash_texture = $DashboardSprite.texture
+	$DashboardSprite.position.x = (screen_size.x / 3 - dash_texture.get_size().x) / 2
+	$DashboardSprite.position.y = (screen_size.y - dash_texture.get_size().y) / 2
 	
-	$MultNeedleSprite.position.x = screen_size.x / 6 + 70
-	$MultNeedleSprite.position.y = screen_size.y / 2 + 40
+	$SpeedNeedleSprite.position.x = $DashboardSprite.position.x + dash_texture.get_size().x / 2 - 75
+	$SpeedNeedleSprite.position.y = $DashboardSprite.position.y + dash_texture.get_size().y / 2 + 15
+	
+	$MultNeedleSprite.position.x = $DashboardSprite.position.x + dash_texture.get_size().x / 2 + 65
+	$MultNeedleSprite.position.y = $DashboardSprite.position.y + dash_texture.get_size().y / 2 + 15
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	t += delta
 	$SpeedNeedleSprite.rotation_degrees = speed_dash_angle + sin(2*t) * 5
+	
+	screen_size = get_viewport_rect().size
+	
+	dash_texture = $DashboardSprite.texture
+	$DashboardSprite.position.x = (screen_size.x / 3 - dash_texture.get_size().x) / 2
+	$DashboardSprite.position.y = (screen_size.y - dash_texture.get_size().y) / 2
+	
+	$SpeedNeedleSprite.position.x = $DashboardSprite.position.x + dash_texture.get_size().x / 2 - 75
+	$SpeedNeedleSprite.position.y = $DashboardSprite.position.y + dash_texture.get_size().y / 2 + 15
+	
+	$MultNeedleSprite.position.x = $DashboardSprite.position.x + dash_texture.get_size().x / 2 + 65
+	$MultNeedleSprite.position.y = $DashboardSprite.position.y + dash_texture.get_size().y / 2 + 15
 
 func _on_game_mult_changed(new_value: Variant) -> void:
 	mult_dash_angle = (new_value - 1.0) / (10.0 - 1.0) * (140 - -140) + -140
