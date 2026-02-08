@@ -165,6 +165,7 @@ func _on_obstacle_timer_timeout() -> void:
 		var oil = oil_scene.instantiate()
 		var lane = randi() % 5
 
+		oil.speed = global_speed
 		oil.position.y = -50
 		oil.position.x = screen_size.x / 3 + road_width * 0.1 + road_width * 0.2 * lane
 		oil.add_to_group("moving")

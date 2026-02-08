@@ -36,8 +36,6 @@ wait_time = 0.2
 
 [node name="Sidebar" parent="." unique_id=261893617 instance=ExtResource("9_getpj")]
 anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
 grow_vertical = 1
 
 [node name="ScoreTimer" type="Timer" parent="." unique_id=1326030749]
