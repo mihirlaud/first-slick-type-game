@@ -11,8 +11,8 @@
 
 [node name="Sidebar" type="Control" unique_id=261893617]
 layout_mode = 3
-anchor_right = 1.0
-anchor_bottom = 1.0
+offset_right = 1152.0
+offset_bottom = 648.0
 grow_vertical = 2
 script = ExtResource("1_1nfj0")
 
@@ -41,36 +41,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.7372549)
-
-[node name="ScoreLabel" type="Label" parent="." unique_id=1198462023]
-top_level = true
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.167
-anchor_right = 0.167
-offset_left = -100.200005
-offset_right = 99.799995
-offset_bottom = 40.0
-theme_override_fonts/font = ExtResource("2_jf2tq")
-theme_override_font_sizes/font_size = 40
-text = "SCORE"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HiScoreLabel" type="Label" parent="." unique_id=1099151927]
-top_level = true
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.167
-anchor_right = 0.167
-offset_left = -135.0
-offset_top = 90.0
-theme_override_colors/font_color = Color(0.44705883, 1, 0.47843137, 1)
-theme_override_fonts/font = ExtResource("2_jf2tq")
-theme_override_font_sizes/font_size = 30
-text = "HI SCORE:"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="PauseButton" type="TextureButton" parent="." unique_id=958205603]
 top_level = true
@@ -121,10 +91,47 @@ grow_vertical = 0
 texture_normal = ExtResource("6_2j5tl")
 
 [node name="DashboardSprite" type="TextureRect" parent="." unique_id=487906490]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.17300001
+anchor_right = 0.17300001
+offset_left = -199.296
+offset_top = 246.0
+offset_right = 198.704
+offset_bottom = 452.0
 texture = ExtResource("8_hota4")
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=1198462023]
+top_level = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.167
+anchor_right = 0.167
+offset_left = -100.200005
+offset_right = 99.79999
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("2_jf2tq")
+theme_override_font_sizes/font_size = 40
+text = "SCORE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HiScoreLabel" type="Label" parent="." unique_id=1099151927]
+top_level = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.167
+anchor_right = 0.167
+offset_left = -137.384
+offset_top = 130.0
+offset_right = 132.616
+offset_bottom = 160.0
+theme_override_colors/font_color = Color(0.44705883, 1, 0.47843137, 1)
+theme_override_fonts/font = ExtResource("2_jf2tq")
+theme_override_font_sizes/font_size = 30
+text = "HI SCORE:"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="PauseButton" to="." method="_on_pause_button_pressed"]
 [connection signal="pressed" from="HelpButton" to="." method="_on_help_button_pressed"]

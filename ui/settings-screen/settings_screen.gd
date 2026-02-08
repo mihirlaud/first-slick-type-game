@@ -18,7 +18,14 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	var screen_size = get_viewport_rect().size
+	
+	position.x = screen_size.x / 2 - $ColorRect.size.x / 2
+	position.y = screen_size.y / 2 - $ColorRect.size.y / 2
+	
+	$CloseButton.scale = Vector2(2, 2)
+	$CloseButton.position.y = 10
+	$CloseButton.position.x = $ColorRect.size.x - $CloseButton.size.x * 2 - 10
 
 func _on_master_volume_slider_value_changed(value: float) -> void:
 	var bus_index = AudioServer.get_bus_index("Master")

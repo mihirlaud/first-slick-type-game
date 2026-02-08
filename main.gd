@@ -80,6 +80,9 @@ func start_game() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	screen_size = get_viewport_rect().size
+	road_width = screen_size.x * 2 / 3
+	$Player.set_y(screen_size.y * 0.8)
 	if not start and Input.is_action_just_pressed("restart"):
 		restart()
 	

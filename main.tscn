@@ -38,8 +38,6 @@ wait_time = 0.2
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_right = 0.0
-grow_horizontal = 1
 grow_vertical = 1
 
 [node name="ScoreTimer" type="Timer" parent="." unique_id=1326030749]

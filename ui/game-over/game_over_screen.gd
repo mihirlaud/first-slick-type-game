@@ -5,6 +5,9 @@ extends Control
 func _ready() -> void:
 	var screen_size = get_viewport_rect().size
 	
+	$ColorRect.anchor_right = 1.0
+	$ColorRect.anchor_bottom = 1.0
+	
 	visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

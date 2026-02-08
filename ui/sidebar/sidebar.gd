@@ -35,6 +35,12 @@ func _ready() -> void:
 	$CreditsButton.position.x = 10 + $SettingsButton.size.x * 2 + 10 + $HelpButton.size.x * 2 + 10 + $PauseButton.size.x * 2 + 10
 	$CreditsButton.position.y = screen_size.y - 10 - $CreditsButton.size.y * 2
 	
+	$SpeedNeedleSprite.position.x = screen_size.x / 6 - 70
+	$SpeedNeedleSprite.position.y = screen_size.y / 2 + 40
+	
+	$MultNeedleSprite.position.x = screen_size.x / 6 + 70
+	$MultNeedleSprite.position.y = screen_size.y / 2 + 40
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
